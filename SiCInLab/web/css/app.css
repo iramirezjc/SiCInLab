@@ -1,0 +1,174 @@
+*{
+	margin: 1;
+	padding: 0;
+	outline: 0;
+}
+
+
+html {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+}
+body {
+    background-color:#fff;
+	background-size: cover;
+}
+
+title {
+
+    font-family: Arial; font-size: 345pt;
+}
+
+.container {
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.tabla-general {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    margin-top: 10px;
+}
+
+.tabla-general th,
+.tabla-general td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.tabla-general thead {
+    background-color: #f2f2f2;
+    color: #000000;
+}
+.tabla-general thead th {
+    text-align: center;
+}
+
+.tabla-general tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.tabla-general tr:hover {
+    background-color: #edf3f6;
+}
+
+.buscador {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.buscador form {
+    width: 100%;
+    max-width: 700px; /* o el ancho que tú quieras */
+}
+
+
+.header {
+    background: #B7834A;
+    color: white;
+    padding: 1rem 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+}
+.cabecera {
+    width: 100%;
+    padding: 0 3rem; 
+    box-sizing: border-box;
+}
+
+.header a {
+    color: white;
+    text-decoration: none;
+}
+
+.logo-nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    letter-spacing: 5px;
+    font-size: 1.3em;
+}
+
+.navbar ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.navbar ul li {
+    display: inline-block;
+}
+
+.navbar ul li a {
+    display: block;
+    padding: 0.5rem;
+    transition: all 0.4s linear;
+    border-radius: 5px;
+}
+
+.navbar ul li a:hover {
+    background: #d9d6d6;
+}
+
+.main {
+    margin-top: 6rem;
+    margin-left: 240px; /* espacio para el sidebar */
+    padding: 20px;
+    flex-grow: 1;
+}
+
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.app-wrapper {
+    display: flex;
+}
+
+.sidebar {
+    position: fixed;
+    top: 6rem;
+    left: 1.5px;
+    width: 220px;
+    height: 100vh;
+    background-color: #fff;
+    color: #fff;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+    border-radius: 10px;
+    border: 1px solid #215D40;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 15px 0;
+}
+
+.sidebar ul li a {
+    color: #215D40;
+    text-decoration: none;
+    display: block;
+}
+
+.content {
+    margin-left: 240px; /* espacio para el sidebar */
+    padding: 20px;
+    flex-grow: 1;
+}
+

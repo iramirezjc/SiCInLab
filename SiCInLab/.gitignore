@@ -1,0 +1,13 @@
+# Ignorar la carpeta vendor donde Composer instala las librerías
+/vendor/
+
+# Ignorar archivos temporales de sistema y editores
+*.log
+*.cache
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+
+# Ignorar archivos de configuración local si los tienes
+.env
