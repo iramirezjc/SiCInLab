@@ -12,6 +12,7 @@ use App\Controllers\PrestamosController;
 use App\Controllers\PrestamoConsumiblesController;
 use App\Controllers\IncidenciasController;
 use App\Controllers\InventariosController;
+use App\Controllers\ServicioSalaController;
 use Core\Route;
 /**
  * Rutas de CRUD Equipos
@@ -86,6 +87,11 @@ Route::get('inventarios/registroInventario', [InventariosController::class, 'reg
 Route::post('inventarios/reporteInventario', [InventariosController::class, 'reporteInventario']); //ruta de reporte en get
 Route::post('inventarios/guardarDesgloseInventario', [InventariosController::class, 'guardarDesgloseInventario']);
 Route::post('inventarios/reporteDesgloseInventario', [InventariosController::class, 'reporteDesgloseInventario']);
-
+/**
+ * Rutas Servicio a Sala
+ */
+Route::get('servicio-sala/solicitud', [ServicioSalaController::class, 'solicitud']);
+Route::post('servicio-sala/solicitud', [ServicioSalaController::class, 'registrarSolicitud']);
+Route::get('servicio-sala/reservacion', [ServicioSalaController::class, 'reservacion']);
 
 Route::handle();

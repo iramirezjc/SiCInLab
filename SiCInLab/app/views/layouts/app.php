@@ -34,7 +34,7 @@ use Core\Enlace;
         <div class="sidebar">
             <ul>
                 <li><a href="/">Usuarios</a></li>
-                <li><a href="/acerca">Servicio a sala</a></li>
+                <li><a href="<?= Enlace::url('servicio-sala/solicitud'); ?>">Servicio a sala</a></li>
                 <li><a href="<?= Enlace::url('prestamos/index'); ?>">Prestamos</a></li>
                 <li><a href="<?= Enlace::url('devoluciones/index'); ?>">Devoluciones</a></li>
                 <li><a href="<?= Enlace::url('compras/index'); ?>">Compras</a></li>
