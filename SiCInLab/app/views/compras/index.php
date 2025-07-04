@@ -11,7 +11,7 @@ ob_start();
             </div>
             <div class="mb-3">
                 <label for="matricula" class="form-label">Matricula de Usuario:</label>
-	    	    <input type="text" class="form-control" id="matricula" name="matricula"  value="5601" readonly>
+	    	    <input type="text" class="form-control" id="matricula" name="matricula"  value="5601" readonly><!--usuario de sesion-->
             </div>
             <div class="mb-3">
                 <label for="vendedor" class="form-label">Vendedor:</label>
@@ -31,7 +31,6 @@ ob_start();
 </div>
 
 <?php
-
 $contenido = ob_get_clean();  // Guarda el contenido y limpia el buffer
 $titulo = 'Compras';          // Puedes personalizar el título desde aquí
 require BASE_APP . '/views/layouts/app.php';  // Usa el layout

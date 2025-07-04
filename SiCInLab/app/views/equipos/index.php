@@ -36,7 +36,7 @@ ob_start();
                     <td><?php echo htmlspecialchars($equipo['canti_equip']); ?></td>
                     <td><?php echo htmlspecialchars($equipo['descr']); ?></td>
                     <td><?php echo htmlspecialchars($equipo['tipo']); ?></td>
-                    <td class="col-accion">
+                    <td class="col-opciones">
                         <div class="mb-2 d-flex gap-1">
                             <a href="<?= Enlace::url('equipos/editar/' . $equipo['id_equip']) ?>" class="btn btn-secondary">Editar</a>
                             <a href="<?= Enlace::url('equipos/borrar/' . $equipo['id_equip']) ?>" 

@@ -1,6 +1,6 @@
 <?php
 //RUTAS ABSOLUTAS
-define('BASE_PATH', dirname(__DIR__));//almacena (C:\laragon\www\SiClnLab_v1)
+define('BASE_PATH', dirname(__DIR__));//almacena (C:\laragon\www\SiCInLab)
 define('BASE_APP', BASE_PATH . '/app');
 define('IMGS_PATH', BASE_PATH .'/web/img/');
 

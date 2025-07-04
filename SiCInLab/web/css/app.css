@@ -31,6 +31,13 @@ title {
     font-family: Arial, sans-serif;
     margin-top: 10px;
 }
+.tabla-general td.col-opciones {
+        white-space: nowrap !important;         /* Impide que los botones salten de línea */
+        padding: 4px 6px !important;            /* Reduce el padding para hacerlo más compacto */
+        width: 1% !important;                   /* Permite al contenido controlar el ancho */
+        text-align: center !important;          /* Centra los botones si hay espacio extra */
+        vertical-align: middle !important;
+}
 
 .tabla-general th,
 .tabla-general td {
@@ -51,9 +58,6 @@ title {
     background-color: #f2f2f2;
 }
 
-.tabla-general tr:hover {
-    background-color: #edf3f6;
-}
 
 .buscador {
     width: 100%;

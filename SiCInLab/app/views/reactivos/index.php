@@ -2,15 +2,6 @@
 use Core\Enlace;
 ob_start();
 ?>
-<style>
-    .tabla-general td.col-opciones {
-        white-space: nowrap;         /* Impide que los botones salten de línea */
-        padding: 4px 6px;            /* Reduce el padding para hacerlo más compacto */
-        width: 1%;                   /* Permite al contenido controlar el ancho */
-        text-align: center;          /* Centra los botones si hay espacio extra */
-        vertical-align: middle;
-    }
-</style>
 <div class="reactivos-index">
     <br>
     <div class="buscador">

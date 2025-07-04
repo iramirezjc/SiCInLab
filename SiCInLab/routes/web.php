@@ -90,8 +90,9 @@ Route::post('inventarios/reporteDesgloseInventario', [InventariosController::cla
 /**
  * Rutas Servicio a Sala
  */
-Route::get('servicio-sala/solicitud', [ServicioSalaController::class, 'solicitud']);
-Route::post('servicio-sala/solicitud', [ServicioSalaController::class, 'registrarSolicitud']);
-Route::get('servicio-sala/reservacion', [ServicioSalaController::class, 'reservacion']);
+Route::get('servicio-sala/reservacion', [ServicioSalaController::class, 'reservaciones']);
+Route::get('servicio-sala/listaReservaciones', [ServicioSalaController::class, 'listaReservaciones']);
+Route::get('servicio-sala/horasDisponibles', [ServicioSalaController::class, 'horasDisponibles']);
+Route::post('servicio-sala/registrarReservacion', [ServicioSalaController::class, 'registrarReservacion']);
 
 Route::handle();

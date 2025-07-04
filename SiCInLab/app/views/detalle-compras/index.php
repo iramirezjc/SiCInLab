@@ -12,7 +12,7 @@ label.error {
 .registrar-producto {
       max-width: 200px;
       margin-left: 80%
-    }
+}
 </style>
 <div class="detalle-compras-index">
     <div class="registrar-producto">
