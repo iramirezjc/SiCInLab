@@ -3,37 +3,50 @@ ob_start();
 ?>
 
 <div class="devoluciones-index">
-    <br>
-	<div class="buscador">
-		<form method="GET" action="">
-            <div class="input-group mb-3">
-			    <input type="text" class="form-control w-50" name="matricula" id="matricula" placeholder="Ingrese la matricula del estudiante o profesor" autocomplete="off">
-			    <button type="submit" class="btn btn-outline-primary" id="buscar">consultar</button>
+  <div class="container">
+    <div class="contenedorForma">
+			<div class="container-titulo">
+				<h5>Devoluciones</h5>
+			</div>
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+          <div>
+	  	      <form method="GET" action="">
+                <div class="input-group mb-3">
+	  	      	    <input type="text" class="form-control w-50" name="matricula" id="matricula" placeholder="Ingrese la matricula del estudiante o profesor" autocomplete="off">
+	  	      	    <button type="submit" class="btn btn-outline-primary" id="buscar">consultar</button>
+                </div>
+	  	      </form>
+          </div>
+        </div>
+        <div class="col-3"></div>
+      </div>
+      <div class="row">
+          <form id="devoluciones">
+            <div class="mb-3">
+              <table class="tabla-general">
+                  <thead>
+                      <tr>
+	  		            <th>Categoría</th>
+	  		            <th>Objeto</th>
+                          <th>Prestado</th>
+                          <th>Devuelto</th>
+                          <th>A Devolver</th>
+                          <th></th>
+                      </tr>
+                  </thead>
+                  <tbody id="filas">
+                  </tbody>
+	  	        </table>
             </div>
-		</form>
+              <div class="text-end">
+                  <button class="btn btn-success" type="submit" id="registrar">Registrar Devolucion</button>
+              </div>
+          </form>
+      </div>
+    </div>   
   </div>
-	<div class="container">
-        <form id="devoluciones">
-            <table class="tabla-general">
-                <thead>
-                    <tr>
-			            <th>Categoría</th>
-			            <th>Objeto</th>
-                        <th>Prestado</th>
-                        <th>Devuelto</th>
-                        <th>A Devolver</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody id="filas">
-                </tbody>
-		        </table>
-            <br>
-            <div class="text-end">
-                <button class="btn btn-success" type="submit" id="registrar">Registrar Devolucion</button>
-            </div>
-        </form>
-	</div>
 </div>
 
 <!-- Modal de Observación -->

@@ -176,7 +176,7 @@ function agregaDetalle(detalle, numeroFila) {
                 "<span>" + (detalle.cantidad_devuelta || 0) + "</span>" +
             "</td>" +
             "<td class=\"text-center\" style=\"width: 1%; white-space: nowrap;\">" +
-                "<input type=\"number\" id=\"devolucion" + numeroFila + "\" name=\"devolucion[]\" value=\"0\" style=\"text-align: right;\"/>" +
+                "<input type=\"number\" id=\"devolucion" + numeroFila + "\" name=\"devolucion[]\" value=\"0\" class=\"form-control\" style=\"text-align: right; width: 12rem;\"/>" +
             "</td>"+
             "<td class=\"text-center\" style=\"width: 1%; white-space: nowrap;\">" +
                 "<input type=\"checkbox\" id=\"devolver" + numeroFila + "\" name=\"devolver[]\" class=\"form-check-input\"/> " +

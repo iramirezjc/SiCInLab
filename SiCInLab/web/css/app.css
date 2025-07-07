@@ -1,82 +1,92 @@
 *{
-	margin: 1;
-	padding: 0;
-	outline: 0;
+	margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-
 
 html {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 14px;
 }
 body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    padding-top: 6rem;
     background-color:#fff;
 	background-size: cover;
 }
 
-title {
-
-    font-family: Arial; font-size: 345pt;
-}
-
 .container {
     justify-content: center;
-    border-radius: 10px;
     width: 100%;
+}
+.container-titulo {
+    position: relative;
+    display: inline-block;
+    top: -1.4rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.2rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    border: 1px solid #215D40;
+    border-radius: 10px;
+    color: white;
+    background-color: #215D40;
+}
+.contenedorForma {
+    top: 11rem;
+    padding: 2rem;
+    padding-top: 0;
+    border-radius: 10px;
+    border: 1px solid #215D40;
 }
 
 .tabla-general {
-    width: 100%;
-    border-collapse: collapse;
+    border-collapse: collapse;      /* Importante */
+    border-spacing: 0; 
     font-family: Arial, sans-serif;
-    margin-top: 10px;
-}
-.tabla-general td.col-opciones {
-        white-space: nowrap !important;         /* Impide que los botones salten de línea */
-        padding: 4px 6px !important;            /* Reduce el padding para hacerlo más compacto */
-        width: 1% !important;                   /* Permite al contenido controlar el ancho */
-        text-align: center !important;          /* Centra los botones si hay espacio extra */
-        vertical-align: middle !important;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden; 
 }
 
 .tabla-general th,
 .tabla-general td {
-    border: 1px solid #ccc;
-    padding: 10px;
+    padding: 0.5rem;
     text-align: left;
+    border-left: 1px solid black;
+}
+.tabla-general th:first-child,
+.tabla-general td:first-child {
+    border-left: none; /* Elimina borde izquierdo de la primera celda */
 }
 
 .tabla-general thead {
-    background-color: #f2f2f2;
-    color: #000000;
+    background-color: #B7834A;
+    color: black;
 }
 .tabla-general thead th {
-    text-align: center;
+    padding: 1rem;
+    text-align: justify;
 }
 
 .tabla-general tr:nth-child(even) {
     background-color: #f2f2f2;
 }
-
-
-.buscador {
-    width: 100%;
-    margin: auto;
-    display: flex;
-    justify-content: center;
+/*COLUMNA DE OPCIONES DE LA TABLA*/
+.tabla-general td.col-opciones {
+    white-space: nowrap !important;         /* Impide que los botones salten de línea */
+    padding: 4px 10px !important;            /* Reduce el padding para hacerlo más compacto */
+    text-align: center !important;          /* Centra los botones si hay espacio extra */
+    vertical-align: middle !important;
+    width: 120px !important;
 }
 
-.buscador form {
-    width: 100%;
-    max-width: 700px; /* o el ancho que tú quieras */
-}
-
-
+/*Cabecera*/
 .header {
     background: #B7834A;
     color: white;
     padding: 1rem 0;
-    position: fixed;
     left: 0;
     top: 0;
     right: 0;
@@ -88,7 +98,7 @@ title {
 }
 
 .header a {
-    color: white;
+    color: #215D40;
     text-decoration: none;
 }
 
@@ -121,59 +131,72 @@ title {
 }
 
 .navbar ul li a:hover {
-    background: #d9d6d6;
+    background: #215D40;
+    color: #d9d6d6;
 }
-
-.main {
-    margin-top: 6rem;
-    margin-left: 240px; /* espacio para el sidebar */
-    padding: 20px;
-    flex-grow: 1;
-}
-
-
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
-
-.app-wrapper {
-    display: flex;
-}
-
+/**menu lateral**/
 .sidebar {
     position: fixed;
-    top: 6rem;
-    left: 1.5px;
-    width: 220px;
-    height: 100vh;
-    background-color: #fff;
-    color: #fff;
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-    z-index: 1000;
+    top: 5.5rem; /* Altura del header fijo, ajusta según necesidad */
+    left: 0;
+    height: calc(100vh - 70px); /* Para que no tape el header */
+    overflow-y: auto;
+    z-index: 1020; /* Debajo del header si es necesario */
+    border: 1px solid #B7834A;
     border-radius: 10px;
-    border: 1px solid #215D40;
 }
 
-.sidebar ul {
+.menu-index {
+    position: relative;
+    top: 1px;
+    padding: 2rem;
+    height: calc(95vh - 70px);/*tamaño*/
+    border-radius: 10px;
+    padding-left: 0;
+    padding-right: 0;
+}
+.container-menu ul {
     list-style: none;
-    padding: 0;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: left;
 }
 
-.sidebar ul li {
-    margin: 15px 0;
-}
-
-.sidebar ul li a {
+.container-menu ul li a {
+    width: 100%;
+    display: block;
+    padding: 0.5rem;
+    transition: all 0.4s linear;
     color: #215D40;
     text-decoration: none;
-    display: block;
+    border-radius: 5px;
 }
 
-.content {
-    margin-left: 240px; /* espacio para el sidebar */
-    padding: 20px;
-    flex-grow: 1;
+.container-menu ul li a:hover {
+    background: #d9d6d6;
+    color: #215D40;
+}
+
+/**Calendario CSS**/
+.fc-daygrid-day-number {
+    color: black; /* color de los números en cada celda */
+    font-weight: bold;
+    text-decoration: none;
+}
+.fc-col-header-cell {
+    height: 2.5rem;
+    background-color: #215D40;
+}
+
+.fc-col-header-cell-cushion {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.fc-toolbar-title {
+    color: #215D40;
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 

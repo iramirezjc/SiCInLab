@@ -56,7 +56,7 @@ $(document).ready(function () {
             cantidad: {
                 required: true,
                 number: true,
-                min: 0
+                min: 1
             }
         },
         messages: {
@@ -130,14 +130,14 @@ function agregaDetalle(idControl) {
                 "<span>" + $('#opciones option:selected').text() + "</span>" +
                 "<input type=\"hidden\" id=\"opciones" + numeroFila + "\" name=\"opciones[]\" value=\""+$('#opciones').val()+"\"/>" +
             "</td>"+
-            "<td>" +
+            "<td class=\"text-end\">" +
                 "<span>" + $('#cantidad').val() + "</span>" +
                 "<input type=\"hidden\" id=\"cantidad" + numeroFila + "\" name=\"cantidad[]\" value=\""+$('#cantidad').val()+"\"/>" +
             "</td>"+
             "<td class=\"text-center\" style=\"width: 1%; white-space: nowrap;\">" +
-                "<button type=\"button\" id=\"eliminar" + numeroFila + "\" name=\"eliminar" + numeroFila + "\" class=\"btn btn-danger\" onclick=\"eliminarFila('renglon" + numeroFila + "')\">" +
-                    "<i class=\"bi bi-dash\"></i>" +
-                "</button>"
+                "<button type=\"button\" id=\"eliminar" + numeroFila + "\" name=\"eliminar" + numeroFila + "\" class=\"btn btn-danger\" onclick=\"eliminarFila('renglon" + numeroFila + "')\">" + 
+                    "<i class=\"bi bi-trash-fill\"></i>" +
+                "</button>"+
             "</td>"+
         "</tr>";
 

@@ -1,6 +1,3 @@
-<?php
-use Core\Enlace;
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -25,39 +22,31 @@ use Core\Enlace;
     <title><?= htmlspecialchars($titulo ?? 'SiCInLab') ?></title>
 </head>
 <body>
-    <header class="header">
-        <div class="cabecera logo-nav-container">
-            <a href="" class="logo">Logo</a>
-            <nav class="navbar">
-                <ul>
-                    <li><a href="/usuario">Usuario</a></li>
-                    <li><a href="/Inicio">Inicio</a></li>
-                    <li><a href="/salir">Salir</a></li>
-                </ul>
-            </nav>
+    <div class="container-fluid">
+        <div class="row fixed-top shadow-sm">
+            <header class="header">
+                <div class="cabecera logo-nav-container">
+                    <a href="" class="logo">Logo</a>
+                    <nav class="navbar">
+                        <ul>
+                            <li><a href="/usuario">Usuario</a></li>
+                            <li><a href="/Inicio">Inicio</a></li>
+                            <li><a href="/salir">Salir</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
         </div>
-    </header>
-    <div class="app-wrapper">
-        <div class="sidebar">
-            <ul>
-                <li><a href="/">Usuarios</a></li>
-                <li><a href="<?= Enlace::url('servicio-sala/reservacion'); ?>">Servicio a sala</a></li>
-                <li><a href="<?= Enlace::url('prestamos/index'); ?>">Prestamos</a></li>
-                <li><a href="<?= Enlace::url('devoluciones/index'); ?>">Devoluciones</a></li>
-                <li><a href="<?= Enlace::url('compras/index'); ?>">Compras</a></li>
-                <li><a href="<?= Enlace::url('mobiliarios/index'); ?>">Mobiliario</a></li>
-                <li><a href="<?= Enlace::url('materiales/index'); ?>">Materiales</a></li>
-                <li><a href="<?= Enlace::url('equipos/index'); ?>">Equipos</a></li>
-                <li><a href="<?= Enlace::url('reactivos/index'); ?>">Reactivos</a></li>
-                <li><a href="<?= Enlace::url('inventarios/index'); ?>">Inventario</a></li>
-                <li><a href="<?= Enlace::url('incidencias/index'); ?>">Incidencias</a></li>
-                <li><a href="/servicios">Graficas</a></li>
-            </ul>
+        <div class="row">
+            <div class="col-2 sidebar">
+                <?php include 'menu.php'; ?>
+            </div>
+            <div class="col-10 offset-2">
+                <main class="main p-4">
+                    <?= $contenido ?? '' ?>
+                </main>
+            </div>
         </div>
-        <main class="main">
-            <h1 style="text-align:center;"><?= htmlspecialchars($titulo ?? 'SiCInLab') ?></h1>
-            <?= $contenido ?? '' ?>
-        </main>
     </div>
 </body>
 </html>

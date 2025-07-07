@@ -118,8 +118,8 @@ function agregaDetalle(idControl) {
                 "<span>" + formula + "</span>" +
                 "<input type=\"hidden\" id=\"formuna" + numeroFila + "\" name=\"formuna[]\" value=\""+formula+"\"/>" +
             "</td>"+
-            "<td>" +
-                "<span>" + $('#solicitada').val() + "</span>" +
+            "<td class=\"text-end\">" +
+                "<label>" + $('#solicitada').val() + "</laber>" +
                 "<input type=\"hidden\" id=\"solicitada" + numeroFila + "\" name=\"solicitada[]\" value=\""+$('#solicitada').val()+"\"/>" +
             "</td>"+
             "<td>"+
@@ -129,7 +129,7 @@ function agregaDetalle(idControl) {
             "<td class=\"text-center\" style=\"width: 1%; white-space: nowrap;\">" +
                 "<button type=\"button\" id=\"eliminar" + numeroFila + "\" name=\"eliminar" + numeroFila + "\" class=\"btn btn-danger\" onclick=\"eliminarFila('renglon" + numeroFila + "')\">" +
                     "<i class=\"bi bi-trash-fill\"></i>" +
-                "</button>"
+                "</button>"+
             "</td>"+
         "</tr>";
     

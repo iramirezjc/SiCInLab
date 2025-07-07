@@ -6,29 +6,36 @@ ob_start()
 
 <div class="mobiliario-alta">
     <div class="container">
-        <form method="POST" action="<?= Enlace::url('mobiliarios/alta'); ?>">
-            <div class="mb-3">
-                <label for="nombr" class="form-label">Nombre del mobiliario</label>
-                <input type="text" class="form-control" name="nombr" id="nombr" placeholder="Ingrese el nombre del mobiliario" required>
+        <div class="contenedorForma">
+			<div class="container-titulo">
+				<h5>Registrar Mobiliario</h5>
             </div>
-            <div class="mb-3">
-                <label for="tipo" class="form-label">Tipo de mobiliario</label>
-                <input type="text" class="form-control" name="tipo" id="tipo" placeholder="Ingrese el tipo de mobiliario" required>
+            <div class="row">
+                <form method="POST" action="<?= Enlace::url('mobiliarios/alta'); ?>">
+                    <div class="mb-3">
+                        <label for="nombr" class="form-label">Nombre del mobiliario</label>
+                        <input type="text" class="form-control" name="nombr" id="nombr" placeholder="Ingrese el nombre del mobiliario" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tipo" class="form-label">Tipo de mobiliario</label>
+                        <input type="text" class="form-control" name="tipo" id="tipo" placeholder="Ingrese el tipo de mobiliario" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="mater" class="form-label">Material del mobiliario</label>
+                        <input type="text" class="form-control" name="mater" id="mater" placeholder="Ingrese la marca del mobiliario" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="canti" class="form-label">Cantidad de piezas</label>
+                        <input type="number" class="form-control" name="canti" id="canti" required/>
+                    </div>
+                    <br>
+                    <div class="text-end">
+                        <a href="<?= Enlace::url('mobiliarios/index'); ?>" class="btn btn-secondary" style="display: inline-block;">Volver</a>
+                        <button type="submit" class="btn btn-primary" style="display: inline-block;">Guardar</button>
+                    </div>
+                </form>
             </div>
-            <div class="mb-3">
-                <label for="mater" class="form-label">Material del mobiliario</label>
-                <input type="text" class="form-control" name="mater" id="mater" placeholder="Ingrese la marca del mobiliario" required>
-            </div>
-            <div class="mb-3">
-                <label for="canti" class="form-label">Cantidad de piezas</label>
-                <input type="number" class="form-control" name="canti" id="canti" required/>
-            </div>
-            <br>
-            <div class="mb-3 d-flex gap-2">
-                <button type="submit" class="btn btn-primary" style="display: inline-block;">Guardar</button>
-                <a href="<?= Enlace::url('mobiliarios/index'); ?>" class="btn btn-secondary" style="display: inline-block;">Volver</a>
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
