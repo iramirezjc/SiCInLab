@@ -19,7 +19,7 @@ class PrestamoConsumible extends Model {
 
         return $result->fetch_assoc();
     }
-    public function sanitizar($datos) {
+    private function sanitizar($datos) {
         $fecha = $this->validarFecha($datos['entrega']) ? $this->db->real_escape_string($datos['entrega']) : date('Y-m-d');
         return [
             'fecha' => $fecha,

@@ -61,7 +61,10 @@ Route::post('detalle-compras/registrarCompras', [DetalleComprasController::class
  * Rutas Prestamos
  */
 Route::get('prestamos/{accion:[a-z]+}', [PrestamosController::class]);
-Route::post('prestamos/guardar', [PrestamosController::class, 'guardar']);
+Route::post('prestamos/registrarPrestamo', [PrestamosController::class, 'registrarPrestamo']);
+Route::get('prestamos/detallePrestamo', [PrestamosController::class, 'detallePrestamo']);
+Route::get('prestamos/listarObjetos', [PrestamosController::class, 'listarObjetos']);
+Route::post('prestamos/guardarDetallePrestamo', [PrestamosController::class, 'guardarDetallePrestamo']);
 /**
  * Rutas Consumibles
  */

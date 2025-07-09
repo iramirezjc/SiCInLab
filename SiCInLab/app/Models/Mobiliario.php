@@ -61,6 +61,14 @@ class Mobiliario extends Model {
         
         return $this->db->query($sql);
     }
+    public function restaCantidadId($idMobiliario, $cantidad) {
+        $cant = (int) $cantidad;
+        $sql = "UPDATE mobil 
+                SET canti = canti - '$cant' 
+                WHERE id_mobil = '$idMobiliario'";
+        
+        return $this->db->query($sql);
+    }
     private function sanitizar($datos) {
         return [
             'tipo' => $this->db->real_escape_string($datos['tipo']),

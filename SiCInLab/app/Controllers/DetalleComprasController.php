@@ -38,10 +38,10 @@ class DetalleComprasController extends Controller {
         ]);
     }
     public function obtenerObjetos() {
-        $opciones = isset($_GET['opciones']) ? (int) $_GET['opciones'] : 0;
+        $opcion = isset($_GET['opcion']) ? (int) $_GET['opcion'] : 0;
         $valores = [];
 
-        switch ($opciones) {
+        switch ($opcion) {
             case 1:
                 $valores = $this->equipo->listar();
                 break;

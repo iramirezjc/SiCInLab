@@ -5,6 +5,18 @@ use Core\Model;
 
 class DetallePrestamo extends Model {
 
+    public function insertar($datos) {
+        $prestamo = $this->sanitizar($datos);
+        $sql = "INSERT INTO detall_prest(fk_prest, fk_categ, fk_objeto_id, cant)
+                VALUES (
+                    '{$prestamo['fk_prest']}',
+                    '{$prestamo['fk_categ']}',
+                    '{$prestamo['fk_objeto_id']}',
+                    '{$prestamo['cant']}'
+                )";
+                
+        return $this->db->query($sql);
+    }
     public function consultaDetalleFk($idPrestamo) {
         $fk_prest = (int) $idPrestamo;
         $sql = "SELECT dp.fk_prest, dp.fk_categ, c.nombr, dp.fk_objeto_id, dp.cant
@@ -29,9 +41,10 @@ class DetallePrestamo extends Model {
     }
     private function sanitizar($datos) {
         return [
-            'fk_objeto_id' => $datos['fk_obj'],
-            'fk_prest' => $datos['fk_prest'],
-            'fk_categ' => $datos['fk_categ'],
+            'fk_objeto_id' => (int) $datos['fk_obj'],
+            'fk_prest' => (int) $datos['fk_prest'],
+            'fk_categ' => (int) $datos['fk_categ'],
+            'cant' => (int) $datos['cant']
         ];
     }
 }

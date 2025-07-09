@@ -20,7 +20,7 @@ $(document).ready(function () {
         $.ajax({
             type: "GET",
             url: 'obtenerObjetos',
-            data: { opciones: idCateg},
+            data: { opcion: idCateg},
             dataType: "json",
             success: function (response) {
                 let opcionesHTML = '<option selected>Seleccione una opcion</option>';

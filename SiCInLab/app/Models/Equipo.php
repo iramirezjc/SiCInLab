@@ -61,6 +61,14 @@ class Equipo extends Model {
         
         return $this->db->query($sql);
     }
+    public function restaCantidadId($idEquipo, $cantidad) {
+        $cant = (int) $cantidad;
+        $sql = "UPDATE equip 
+                SET canti_equip = canti_equip - '$cant' 
+                WHERE id_equip = '$idEquipo'";
+        
+        return $this->db->query($sql);
+    }
     private function satinizar($datos) {
         return [
             'nombre' => $this->db->real_escape_string($datos['nombre']),

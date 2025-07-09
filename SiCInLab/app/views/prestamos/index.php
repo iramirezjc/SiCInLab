@@ -9,7 +9,7 @@ ob_start();
 				<h5>Registrar Prestamos</h5>
 			</div>
             <div class="row">
-                <form action="<?= Enlace::url('prestamos/guardar') ?>" method="POST" accept-charset="utf-8">
+                <form action="<?= Enlace::url('prestamos/registrarPrestamo') ?>" method="POST" accept-charset="utf-8">
                     <div class="mb-3">
                         <label for="usuario" class="form-label">Usuario</label>
         	            <input type="text" class="form-control" id="usuario" name="usuario"  value="5601" readonly/><!--Usuario se sesion-->

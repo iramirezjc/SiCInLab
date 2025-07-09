@@ -85,6 +85,14 @@ class Material extends Model{
         
         return $this->db->query($sql);
     }
+    public function restaCantidadId($idMaterial, $cantidad) {
+        $cant = (int) $cantidad;
+        $sql = "UPDATE mater 
+                SET canti = canti - '$cant' 
+                WHERE id_mater = '$idMaterial'";
+        
+        return $this->db->query($sql);
+    }
     private function sanitizar($datos) {
         return [
             'nombre' => $this->db->real_escape_string($datos['nombre']),
