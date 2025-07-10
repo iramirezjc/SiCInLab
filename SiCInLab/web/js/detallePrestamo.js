@@ -93,8 +93,8 @@ $(document).ready(function () {
     }, "Seleccione una opción válida");
 
     $.validator.addMethod("cantidadValida", function (value) {
-        disponible = parseInt($('#disponible').val());
-        solicitada = parseInt(value);
+        disponible = parseInt($('#disponible').val(), 10);
+        solicitada = parseInt(value, 10);
 
         return solicitada <= disponible;
     }, 'Cantidad mayor a la disponible');
@@ -187,7 +187,7 @@ function detectarCategoria(objeto) {
     return 'desconocido';
 }
 function nombreCategoria(idCategoria) {
-    idCategoria = parseInt(idCategoria);
+    idCategoria = parseInt(idCategoria, 10);
     switch (idCategoria) {
         case 1: 
             return 'Equipos';

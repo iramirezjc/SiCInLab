@@ -73,17 +73,20 @@ $(document).ready(function () {
                 number: 'Debe ser un número',
                 min: 'Debe ser mayor a 0'
             }
-        },
-        submitHandler: function (form) {
-            $('#formaTabla').show();
-            agregaDetalle('#miTabla');
-            return false; // Previene el envío real del formulario
         }
     });
 
     $.validator.addMethod("notDefault", function (value) {
         return value !== "Seleccione una opcion";
     }, "Seleccione una opción válida");
+
+    $('#agregar').click(function (e) {
+        e.preventDefault();
+        
+        if ($('#formaGenerica').valid() == false) { return; }
+        $('#formaTabla').show();
+        agregaDetalle('#miTabla');
+    });
 
     $('#finalizar').click(function (e) { 
         e.preventDefault();

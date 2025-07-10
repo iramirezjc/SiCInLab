@@ -110,40 +110,42 @@ $(document).ready(function () {
                 notDefault: 'Ingrese una hora de salida'
             },
             asunto: {
-                required: 'Escribe la razon de la solicitud',
+                required: 'Escribe la razón de la solicitud',
                 notDefault: 'Ingrese el asunto de solicitud'
             },
-        },
-        submitHandler: function (form) {
-            const data = {
-                fk_matri: $('#usuario').val(),
-                solicitante: $('#solicita').val(),
-                fecha: $('#fecha').val(),
-                asunto: $('#asunto').val(),
-                horaEntrada: $('#horaEntrada').val(),
-                horaSalida: $('#horaSalida').val(),
-            }
-            $.ajax({
-                type: "POST",
-                url: "registrarReservacion",
-                data: data,
-                dataType: "json",
-                success: function (response) {
-                    if (!response.success) {
-                        alert(response.mensaje);
-                        return;
-                    }
-                    alert(response.mensaje);
-                    location.reload();
-                }
-            });
-            return false; // Previene envío real
         }
     });
 
     $.validator.addMethod("notDefault", function (value) {
         return value !== "Seleccione una hora" && value.trim() !== "";
-    }, "Seleccione una hora válida");      
+    }, "Seleccione una hora válida");    
+    
+    $('#reservar').click(function (e) {
+        e.preventDefault();
+        if ($('#formaGenerica').valid() == false) { return; }
+        const data = {
+            fk_matri: $('#usuario').val(),
+            solicitante: $('#solicita').val(),
+            fecha: $('#fecha').val(),
+            asunto: $('#asunto').val(),
+            horaEntrada: $('#horaEntrada').val(),
+            horaSalida: $('#horaSalida').val(),
+        }
+        $.ajax({
+            type: "POST",
+            url: "registrarReservacion",
+            data: data,
+            dataType: "json",
+            success: function (response) {
+                if (!response.success) {
+                    alert(response.mensaje);
+                    return;
+                }
+                alert(response.mensaje);
+                location.reload();
+            }
+        });
+    });
 });
 
 

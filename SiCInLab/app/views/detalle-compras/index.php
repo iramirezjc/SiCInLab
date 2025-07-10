@@ -2,14 +2,6 @@
 use Core\Enlace;
 ob_start(); 
 ?>
-<style>
-label.error {
-    color: red;
-    font-size: 0.9em;
-    margin-top: 5px;
-    display: block;
-}
-</style>
 <div class="detalle-compras-index">
     <div class="container">
         <div class="contenedorForma">
@@ -72,7 +64,7 @@ label.error {
                     </div>
                     <div class="col-1 text-center">
                         <label> </label>
-                        <button  type="submit" name="agregar" id="agregar" value="Agregar" class="btn btn-primary">Agregar</button>
+                        <button  type="submit" name="agregar" id="agregar" value="agregar" class="btn btn-primary">Agregar</button>
                     </div>                        
                 </div>
             </form>

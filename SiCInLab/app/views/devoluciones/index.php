@@ -12,7 +12,7 @@ ob_start();
         <div class="col-3"></div>
         <div class="col-6">
           <div>
-	  	      <form method="GET" action="">
+	  	      <form id="buscaMatricula" method="GET" action="">
                 <div class="input-group mb-3">
 	  	      	    <input type="text" class="form-control w-50" name="matricula" id="matricula" placeholder="Ingrese la matricula del estudiante o profesor" autocomplete="off">
 	  	      	    <button type="submit" class="btn btn-outline-primary" id="buscar">consultar</button>

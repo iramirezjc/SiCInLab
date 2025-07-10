@@ -48,7 +48,8 @@ $(document).ready(function () {
             solicitada: {
                 required: true,
                 number: true,
-                min: 1
+                min: 1,
+                maxPrestado: true,
             }
         },
         messages: {
@@ -61,22 +62,33 @@ $(document).ready(function () {
                 number: 'Debe ser numérico',
                 min: 'Debe ser mayor a 0'
             }
-        },
-        submitHandler: function (form) {
-            const idReactivo = $('#reactivos').val();
-            if (reactivoElegido(idReactivo)) {
-                alert('Este reactivo ya fue agregado. Eliminelo y edite la cantidad si necesita cambiarla.');
-                return false;
-            }
-            $('#formaTabla').show();
-            agregaDetalle('#miTabla');
-            return false; // Previene envío real
         }
     });
 
     $.validator.addMethod("notDefault", function (value) {
         return value !== "Seleccione una opcion";
     }, "Seleccione una opción válida");
+
+    $.validator.addMethod("maxPrestado", function (value) {
+        disponible = parseInt($('#disponible').val(), 10);
+        solicitada = parseInt(value, 10);
+
+        return solicitada <= disponible;
+    }, 'Cantidad mayor a la disponible');
+
+    $('#agregar').click(function(e) {
+        e.preventDefault();
+        
+        if ($('#formaGenerica').valid() == false) { return; }
+        const idReactivo = $('#reactivos').val();
+
+        if (reactivoElegido(idReactivo)) {
+            alert('Este reactivo ya fue agregado. Eliminelo y edite la cantidad si necesita cambiarla.');
+            return false;
+        }
+        $('#formaTabla').show();
+        agregaDetalle('#miTabla');
+    });
 
     $('#registrar').click(function (e) {
         e.preventDefault();

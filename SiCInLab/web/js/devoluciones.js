@@ -1,8 +1,30 @@
 $(document).ready(function () {
     $('#registrar').hide();
 
+    $('#buscaMatricula').validate({
+        rules: {
+            matricula: {
+                required: true,
+                number: true,
+                minlength: 4,
+            }
+        },
+        messages: {
+            matricula: {
+                required: 'Ingrese una matricula',
+                number: 'Debe ser una matricula',
+                minlength: 'Ingrese una matricula de 4 dígitos'
+            }
+        },// Coloca el error después del contenedor de la input-group
+        errorPlacement: function (error, element) {
+            error.appendTo(element.closest('.input-group').parent());
+        }
+    });
+
     $('#buscar').click(function (e) {
         e.preventDefault();
+        
+        if($('#buscaMatricula').valid() == false) { return; }
         matricula = $('#matricula').val();
 
         $.ajax({
@@ -46,14 +68,14 @@ $(document).ready(function () {
         });
     });
     
-    validarCantidadDevuelta();//maxPrestado : true
     $('#devoluciones').validate({
         rules: {
             'devolucion[]': {
                 required: true,
                 number: true,
                 min: 1,
-                maxPrestado: true
+                maxPrestado: true,
+                totalValido: true
             }
         },
         messages: {
@@ -62,18 +84,29 @@ $(document).ready(function () {
                 number: "Debe ser un número",
                 min: "Debe ser mayor que 0"
             }
-        },
-        errorPlacement: function (error, element) {
-            error.addClass("invalid-feedback");
-            element.closest("td").append(error);
-        },
-        highlight: function (element) {
-            $(element).addClass("is-invalid");
-        },
-        unhighlight: function (element) {
-            $(element).removeClass("is-invalid").addClass("is-valid");
         }
     });
+
+    $.validator.addMethod("maxPrestado", function(value, element) {
+        const $fila = $(element).closest('tr');
+        const prestado = parseInt($fila.find('input[name="prestado[]"]').val(), 10);
+        const devolucion = parseInt(value, 10);
+
+        if (isNaN(devolucion)) { return false; }
+
+        return devolucion <= prestado;
+    }, "Cantidad mayor a la prestada");
+
+    $.validator.addMethod("totalValido", function(value, element) {
+        const $fila = $(element).closest('tr');
+        const devuelto = parseInt($fila.find('input[name="devuelto[]"]').val(), 10);
+        const prestado = parseInt($fila.find('input[name="prestado[]"]').val(), 10);
+        let devolucion = parseInt(value, 10) + devuelto;
+
+        if (isNaN(devolucion)) { return false; }
+
+        return devolucion <= prestado;
+    }, "Cantidad mayor a la prestada");
     
     //validar cada input dentro de la tabla dimanicamente
     $(document).on('change', 'input[name="devolver[]"]', function () {
@@ -83,24 +116,31 @@ $(document).ready(function () {
             let valid = true; // Fuerza la validación de los campos en esa fila
 
             $fila.find('input[name="devolucion[]"]').each(function () {
-                if (!$(this).valid()) {
-                    valid = false;
-                }
+                if (!$(this).valid()) { valid = false; }
             });
-
-            if (!valid) {
-                $(this).prop('checked', false);
-            }
+            if (!valid) { $(this).prop('checked', false); }
         }
     });
 
     $('#registrar').click(function (e) {
         e.preventDefault();
+        let valid = true;
 
+        $('#filas input[name="devolver[]"]:checked').each(function () {
+            const $fila = $(this).closest('tr');
+             
+            $fila.find('input[name="devolucion[]"]').each(function () {
+                if (!$(this).valid()) { valid = false; }
+            });
+        });
+        if (!valid) { 
+            alert('Corrige los campos inválidos antes de registrar.');
+            return;
+         }
         const seleccionado = $('#filas input[name="devolver[]"]:checked').length;
         
         if (seleccionado === 0) {
-            alert('No hay devoluciones seleccionados para procesar');
+            alert('No hay devoluciones seleccionadas para procesar');
             return;
         }
         $('#observacion').modal('show');
@@ -174,6 +214,7 @@ function agregaDetalle(detalle, numeroFila) {
             "</td>"+
             "<td>" + 
                 "<span>" + (detalle.cantidad_devuelta || 0) + "</span>" +
+                "<input type=\"hidden\" id=\"devuelto" + numeroFila + "\" name=\"devuelto[]\" value=\""+ (detalle.cantidad_devuelta || 0) +"\"/>" +
             "</td>" +
             "<td class=\"text-center\" style=\"width: 1%; white-space: nowrap;\">" +
                 "<input type=\"number\" id=\"devolucion" + numeroFila + "\" name=\"devolucion[]\" value=\"0\" class=\"form-control\" style=\"text-align: right; width: 12rem;\"/>" +
@@ -186,18 +227,4 @@ function agregaDetalle(detalle, numeroFila) {
         "</tr>";
 
     return nuevaFila;
-}
-//validar que la cantidad a devolver no rebase la cantidad prestada
-function validarCantidadDevuelta() {
-    $.validator.addMethod("maxPrestado", function(value, element) {
-        const $row = $(element).closest('tr');
-        const prestado = parseInt($row.find('input[name="prestado[]"]').val(), 10);
-        const devolucion = parseInt(value, 10);
-
-        if (isNaN(devolucion) || isNaN(prestado)) {
-            return false;
-        }
-
-        return devolucion <= prestado;
-    }, "Cantidad mayor a la prestada");
 }

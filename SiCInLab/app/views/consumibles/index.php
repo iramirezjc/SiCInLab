@@ -1,14 +1,6 @@
 <?php
 ob_start(); 
 ?>
-<style>
-label.error {
-    color: red;
-    font-size: 0.9em;
-    margin-top: 5px;
-    display: block;
-}
-</style>
 <div class="detalle-prestamo-consumible-index">
     <!-------------------------FORMULARIO-------------------->
     <div class="container">

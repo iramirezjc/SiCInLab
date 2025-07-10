@@ -2,18 +2,6 @@
 use Core\Enlace;
 ob_start();
 ?>
-<style>
-label.error {
-    color: red;
-    font-size: 0.9em;
-    margin-top: 5px;
-    display: block;
-}
-.registrar-producto {
-      max-width: 200px;
-      margin-left: 80%
-}
-</style>
 <div class="servicio-sala-reservacion">
 	<div class="container">
 		<form id="formaGenerica" method="POST"  action="<?= Enlace::url('servicio-sala/reservaciones'); ?>">
