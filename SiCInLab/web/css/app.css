@@ -162,7 +162,7 @@ body {
     text-align: left;
 }
 
-.container-menu ul li a {
+.modulos li a {
     width: 100%;
     display: block;
     padding: 0.5rem;
@@ -171,7 +171,14 @@ body {
     text-decoration: none;
     border-radius: 5px;
 }
-
+.pantallas li a {
+    display: block;
+    transition: all 0.4s linear;
+    padding-left: 2rem;
+    color: #B7834A;
+    text-decoration: none;
+    border-radius: 5px;
+}
 .container-menu ul li a:hover {
     background: #d9d6d6;
     color: #215D40;

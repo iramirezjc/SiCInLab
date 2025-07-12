@@ -13,6 +13,7 @@ use App\Controllers\PrestamoConsumiblesController;
 use App\Controllers\IncidenciasController;
 use App\Controllers\InventariosController;
 use App\Controllers\ServicioSalaController;
+use App\Controllers\UsuariosController;
 use Core\Route;
 /**
  * Rutas de CRUD Equipos
@@ -97,5 +98,13 @@ Route::get('servicio-sala/reservacion', [ServicioSalaController::class, 'reserva
 Route::get('servicio-sala/listaReservaciones', [ServicioSalaController::class, 'listaReservaciones']);
 Route::get('servicio-sala/horasDisponibles', [ServicioSalaController::class, 'horasDisponibles']);
 Route::post('servicio-sala/registrarReservacion', [ServicioSalaController::class, 'registrarReservacion']);
+/**
+ * Rutas Usuarios
+ */
+Route::get('usuario/index', [UsuariosController::class, 'index']);
+Route::get('usuario/alta', [UsuariosController::class, 'alta']);
+Route::post('usuario/alta', [UsuariosController::class, 'guardar']);
+Route::get('usuario/editar', [UsuariosController::class, 'editar']);
+Route::get('usuario/buscador', [UsuariosController::class, 'buscador']);
 
 Route::handle();
