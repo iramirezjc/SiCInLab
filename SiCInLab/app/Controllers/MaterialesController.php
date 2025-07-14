@@ -64,7 +64,7 @@ class MaterialesController extends Controller {
         if($eliminado) {
             return $this->redirect('materiales/index');
         } else {
-            echo "Error al intentar eliminar el material.";
+            echo "<script>alert('Error al intentar eliminar el material.'); window.history.back();</script>";
         }
     }
     public function buscador() {

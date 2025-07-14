@@ -7,9 +7,8 @@ use Core\Enlace;
             <li>
                 <a href="">Usuarios</a>
                 <ul class="pantallas">
-                    <li><a href="<?= Enlace::url('usuario/index'); ?>">usuarios registrados</a></li>
-                    <li><a href="<?= Enlace::url('usuario/alta'); ?>">registrar usuario</a></li>
-                    <li><a href="<?= Enlace::url('usuario/editar'); ?>">modificar datos</a></li>
+                    <li><a href="<?= Enlace::url('usuarios/index'); ?>">usuarios registrados</a></li>
+                    <li><a href="<?= Enlace::url('usuarios/alta'); ?>">registrar usuario</a></li>
                 </ul>
             </li>
             <li><a href="<?= Enlace::url('servicio-sala/reservacion'); ?>">Servicio a sala</a></li>

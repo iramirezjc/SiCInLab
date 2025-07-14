@@ -25,21 +25,29 @@ ob_start();
                     <table class="tabla-general">
                         <thead>
                             <tr>
-                                <th>Nombre Usuario</th>
                                 <th>Matricula</th>
+                                <th>Nombre Usuario</th>
                                 <th>Nombre</th>
                                 <th>Teléfono</th>
                                 <th>Nivel de usuario</th> 
+                                <th>Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach($usuarios as $usuario): ?>
                                 <tr>
-                                    <td><?php echo htmlspecialchars($usuario['user_name']); ?></td>
                                     <td><?php echo htmlspecialchars($usuario['id_matri']); ?></td>
+                                    <td><?php echo htmlspecialchars($usuario['user_name']); ?></td>
                                     <td><?php echo htmlspecialchars($usuario['apell'].' '.$usuario['nombr']); ?></td>
                                     <td><?php echo htmlspecialchars($usuario['num_tel']); ?></td>
                                     <td><?php echo htmlspecialchars($usuario['nombr_nivel']); ?></td>
+                                    <td class="col-opciones">
+                                        <div>
+                                            <a href="<?= Enlace::url('usuarios/editar/'.$usuario['id_matri'])?>" class="btn btn-secondary">Restablecer</a>
+                                            <a href="<?= Enlace::url('usuarios/borrar/'.$usuario['id_matri'])?>" class="btn btn-danger" 
+                                            onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?');">Eliminar</a>                     
+                                        </div>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>    

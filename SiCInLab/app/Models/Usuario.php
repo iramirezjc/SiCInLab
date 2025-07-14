@@ -29,6 +29,33 @@ class Usuario extends Model {
 
         return $this->db->query($sql);
     }
+    public function mostrar($matricula) {
+        $sql = "SELECT * FROM usuar 
+                INNER JOIN nivel_usuar ON fk_nivel_usuar = id_nivel_usuar
+                WHERE id_matri = $matricula";
+        $result = $this->db->query($sql);
+
+        return $result->fetch_assoc();
+    }
+    public function actualizar($datos, $matricula) {
+        $usuario = $this->sanitizar($datos);
+        $sql = "UPDATE usuar 
+                SET nombr = '{$usuario['nombr']}',
+                    apell = '{$usuario['apell']}',
+                    contr = '{$usuario['contr']}', 
+                    fecha_nacim = '{$usuario['fecha_nacim']}', 
+                    num_tel = '{$usuario['num_tel']}', 
+                    fk_nivel_usuar = {$usuario['fk_nivel_usuar']}, 
+                    user_name = '{$usuario['user_name']}' 
+                WHERE id_matri = $matricula";
+        
+        return $this->db->query($sql);
+    }
+    public function eliminar($matricula) {
+        $sql = "DELETE FROM usuar WHERE id_matri = $matricula";
+
+        return $this->db->query($sql);
+    }
     public function buscar($valorBusqueda) {
         $sql = "SELECT * FROM usuar 
                 INNER JOIN nivel_usuar ON fk_nivel_usuar = id_nivel_usuar

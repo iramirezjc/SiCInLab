@@ -47,21 +47,21 @@ class Reactivo extends Model {
     public function actualizar($datos, $idReactivo) {
         $reactivo = $this->sanitizar($datos);
         $sql = "UPDATE react 
-                SET nombr= '{$reactivo['nombr']}', 
-                    formu= '{$reactivo['formu']}', 
-                    pelig_salud= '{$reactivo['salud']}', 
-                    pelig_infla= '{$reactivo['infla']}', 
-                    pelig_ines= '{$reactivo['inest']}', 
-                    pelig_esp= '{$reactivo['espec']}', 
-                    fk_unids= '{$reactivo['fk_unids']}', 
-                    cant= '{$reactivo['canti']}' 
+                SET nombr = '{$reactivo['nombr']}', 
+                    formu = '{$reactivo['formu']}', 
+                    pelig_salud = '{$reactivo['salud']}', 
+                    pelig_infla = '{$reactivo['infla']}', 
+                    pelig_ines = '{$reactivo['inest']}', 
+                    pelig_esp = '{$reactivo['espec']}', 
+                    fk_unids = '{$reactivo['fk_unids']}', 
+                    cant = '{$reactivo['canti']}' 
                 WHERE id_react= '$idReactivo'";
                 
         return $this->db->query($sql);
     }
     public function eliminar($idReactivo) {
         $id_react = (int) $idReactivo;
-        $sql= "DELETE FROM react WHERE id_react= '$id_react'";
+        $sql= "DELETE FROM react WHERE id_react = '$id_react'";
 
         return $this->db->query($sql);
     }

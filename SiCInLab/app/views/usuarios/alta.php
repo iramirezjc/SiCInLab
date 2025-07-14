@@ -14,7 +14,7 @@ ob_start();
                     <?php foreach ($roles as $rol): ?>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="filtrar" id="radio<?= $rol['id_nivel_usuar']?>" value="<?= $rol['id_nivel_usuar']?>" autocomplete="off" require>
-                            <label class="form-check-label" for="radio0">
+                            <label class="form-check-label" for="radio<?= $rol['id_nivel_usuar']?>">
                               <?= $rol['nombr_nivel']?>
                             </label>
                         </div>

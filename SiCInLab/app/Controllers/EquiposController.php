@@ -54,7 +54,7 @@ class EquiposController extends Controller {
         if($eliminado) {
             return $this->redirect('equipos/index');
         } else {
-            echo "Error al intentar eliminar el equipo.";
+            echo "<script>alert('Error al intentar eliminar el equipo.'); window.history.back();</script>";
         }
     }
     public function buscador() {

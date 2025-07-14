@@ -101,10 +101,12 @@ Route::post('servicio-sala/registrarReservacion', [ServicioSalaController::class
 /**
  * Rutas Usuarios
  */
-Route::get('usuario/index', [UsuariosController::class, 'index']);
-Route::get('usuario/alta', [UsuariosController::class, 'alta']);
-Route::post('usuario/alta', [UsuariosController::class, 'guardar']);
-Route::get('usuario/editar', [UsuariosController::class, 'editar']);
-Route::get('usuario/buscador', [UsuariosController::class, 'buscador']);
+Route::get('usuarios/index', [UsuariosController::class, 'index']);
+Route::get('usuarios/alta', [UsuariosController::class, 'alta']);
+Route::post('usuarios/alta', [UsuariosController::class, 'guardar']);
+Route::get('usuarios/editar/{id:\d+}', [UsuariosController::class, 'editar']);
+Route::post('usuarios/editar/{id:\d+}', [UsuariosController::class, 'actualizarDatos']);
+Route::get('usuarios/buscador', [UsuariosController::class, 'buscador']);
+Route::get('usuarios/{accion:[a-z]+}/{id:\d+}', [UsuariosController::class]);
 
 Route::handle();

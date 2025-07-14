@@ -52,7 +52,7 @@ class MobiliariosController extends Controller {
         if($eliminado) {
             return $this->redirect('mobiliarios/index');
         } else {
-            echo "Error al intentar eliminar el mobiliario.";
+            echo "<script>alert('Error al intentar eliminar el mobiliario.'); window.history.back();</script>";
         }
     }
     public function buscador() {

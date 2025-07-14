@@ -69,7 +69,7 @@ class ReactivosController extends Controller {
         if($eliminado) {
             return $this->redirect('reactivos/index');
         } else {
-            echo "Error al intentar eliminar el reactivo.";
+            echo "<script>alert('Error al intentar eliminar el reactivo.'); window.history.back();</script>";
         }
     }
     public function buscador() {
