@@ -1,5 +1,4 @@
 <?php
-
 use Core\Enlace;
 ob_start() 
 ?>

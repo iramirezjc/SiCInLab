@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__.'/../core/global.php');
 
+use App\Controllers\SitioController;
 use App\Controllers\EquiposController;
 use App\Controllers\MaterialesController;
 use App\Controllers\MobiliariosController;
@@ -15,6 +16,12 @@ use App\Controllers\InventariosController;
 use App\Controllers\ServicioSalaController;
 use App\Controllers\UsuariosController;
 use Core\Route;
+/**
+ * acceso
+ */
+Route::get('login', [SitioController::class, 'login']);
+Route::post('iniciarSesion', [SitioController::class, 'iniciarSesion']);
+Route::get('sitio/panel', [SitioController::class, 'panel']);
 /**
  * Rutas de CRUD Equipos
  */
