@@ -24,7 +24,7 @@ Sistema de Control de Inventarios de Laboratorio.
 ## Base de Datos
 
 - Crea una nueva base de datos en MySQL usando Workbench o similar
-- Puedes ejecutar las tablas en `BD/tablas.sql`. o
+- Puedes ejecutar las tablas en `BD/tablas.sql`. o restaurar la BD de `BD/dbdesarrollo/sicinlab.sql`
 - En una terminal ejecuta mysql -u "usuario" -p "contraseña"
 - Una vez abierto el interprete de MySQL ejecutar
 - use database "nombr de la BD";
