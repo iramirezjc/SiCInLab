@@ -10,14 +10,15 @@ class MaterialesController extends Controller {
     private $unidad;
 
     public function __construct() {
+        parent::__construct(true);
         $this->material = new Material();
         $this->unidad = new Unidad();        
     }
 
     public function index() {
-        $materiales = $this->material->listar();
+        $lista = $this->material->listar();
 
-        $this->render('materiales/index', ['materiales' => $materiales]);
+        $this->render('materiales/index', ['materiales' => $lista]);
     }
     public function alta() {
         $unidades = $this->unidad->listar();

@@ -33,11 +33,11 @@ class SitioController extends Controller {
             ]);
             exit;
         }
-        /*$_SESSION['usuario'] = [
-            'id' => $datos['id_usuario'],
-            'nombre' => $datos['nombre'],
-            'rol' => $datos['id_nivel_usuar']
-        ];*/
+        $_SESSION['usuario'] = [
+            'matricula' => $datos['id_matri'],
+            'nombreUsuario' => $datos['user_name'],
+            'rol' => $datos['fk_nivel_usuar']
+        ];
 
         echo json_encode([
             'success' => true, 
@@ -46,10 +46,17 @@ class SitioController extends Controller {
         ]);
     }
     public function panel() {
-        /**if (!isset($_SESSION['usuario'])) {
+        if (!isset($_SESSION['usuario'])) {
             $this->redirect('login');
             exit;
-        }*/
+        }
         $this->render('sitio/panel');
+    }
+    public function cerrarSesion() {
+        session_unset();
+        session_destroy();
+
+        $this->redirect('login');
+        exit;
     }
 }

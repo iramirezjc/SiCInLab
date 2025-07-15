@@ -15,7 +15,7 @@ ob_start();
                 </div>
                 <div class="mb-3">
                     <label for="matricula" class="form-label">Matricula de Usuario:</label>
-	    	        <input type="text" class="form-control" id="matricula" name="matricula"  value="5601" readonly><!--usuario de sesion-->
+	    	        <input type="text" class="form-control" id="matricula" name="matricula"  value="<?= $_SESSION['usuario']['matricula'] ?>" readonly><!--usuario de sesion-->
                 </div>
                 <div class="mb-3">
                     <label for="vendedor" class="form-label">Vendedor:</label>

@@ -14,7 +14,7 @@
     <title >SiCInLab</title>
   </head>
   <body>
-    <img src="img/escudo_itsh.png"  style="top:0%; position:  fixed;left: 30%; width: 40%; "/>
+    <img src="<?= BASE_STYLE?>/web/img/escudo_itsh.png"  style="top:0%; position:  fixed;left: 30%; width: 40%; "/>
     <div class="inicioSesion" >
         <form action="POST" id="formInicioSesion">
             <div class="mb-3">

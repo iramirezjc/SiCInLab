@@ -10,8 +10,13 @@ class UsuariosController extends Controller {
     private $nivelUsuario;
 
     public function __construct(){
+        parent::__construct(true);
         $this->usuarios = new Usuario();
         $this->nivelUsuario = new NivelUsuario();
+        if ($_SESSION['usuario']['rol'] != '1') {
+            $this->redirect('sitio/panel');
+            exit;
+        }
     }
     public function index() {
         $lista = $this->usuarios->listar();
@@ -48,6 +53,9 @@ class UsuariosController extends Controller {
         return $this->redirect('usuarios/index');
     }
     public function editar($matricula) {
+        if ($matricula == $_SESSION['usuario']['matricula']) {
+            return $this->redirect('usuarios/index');
+        }
         $detalle = $this->usuarios->mostrar($matricula);
         $lista = $this->nivelUsuario->listar();
 
@@ -73,6 +81,9 @@ class UsuariosController extends Controller {
         return $this->redirect('usuarios/index');
     }
     public function borrar($matricula) {
+        if ($matricula == $_SESSION['usuario']['matricula']) {
+            return $this->redirect('usuarios/index');
+        }
         $id_usar_matri = (int) $matricula;
         $eliminado = $this->usuarios->eliminar($id_usar_matri);
 

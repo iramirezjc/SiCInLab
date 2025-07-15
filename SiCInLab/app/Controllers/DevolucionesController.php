@@ -20,6 +20,7 @@ class DevolucionesController extends Controller {
     private $mobiliario;
 
     public function __construct() {
+        parent::__construct(true);
         $this->devolucion = new Devolucion();
         $this->detalleDevolucion = new DetalleDevolucion();
         $this->prestamo = new Prestamo();  

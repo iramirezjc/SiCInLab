@@ -13,6 +13,7 @@ class ServicioSalaController extends Controller {
     private $solicitudes;
 
     public function __construct() {
+        parent::__construct(true);
         $this->horarios = new Horario();
         $this->solicitudes = new Solicitud();        
     }

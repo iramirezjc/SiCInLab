@@ -20,7 +20,7 @@ ob_start()
                     </div>
                     <div class="mb-3">
                         <label for="matricula" class="form-label">Matricula:</label>
-                        <input type="text" class="form-control" id="matricula" name="matricula" value="5681" readonly>
+                        <input type="text" class="form-control" id="matricula" name="matricula" value="<?= $_SESSION['usuario']['matricula'] ?>" readonly>
                     </div>
                     <div class="botones" style="text-align: end;">
                         <a href="" class="btn btn-warning" id="cancelar" name="cancelar">Cancelar</a>

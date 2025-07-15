@@ -10,13 +10,14 @@ class ReactivosController extends Controller {
     private $unidad;
 
     public function __construct() {
+        parent::__construct(true);
         $this->reactivo = new Reactivo();
         $this->unidad = new Unidad();        
     }
     public function index() {
-        $reactivos = $this->reactivo->listar();
+        $lista = $this->reactivo->listar();
 
-        $this->render('reactivos/index', ['reactivos' => $reactivos]);
+        $this->render('reactivos/index', ['reactivos' => $lista]);
     }
     public function alta() {
         $unidades = $this->unidad->listar();

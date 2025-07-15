@@ -42,11 +42,13 @@ ob_start();
                                     <td><?php echo htmlspecialchars($usuario['num_tel']); ?></td>
                                     <td><?php echo htmlspecialchars($usuario['nombr_nivel']); ?></td>
                                     <td class="col-opciones">
+                                        <?php if ($usuario['id_matri'] != $_SESSION['usuario']['matricula']) { ?>
                                         <div>
                                             <a href="<?= Enlace::url('usuarios/editar/'.$usuario['id_matri'])?>" class="btn btn-secondary">Restablecer</a>
                                             <a href="<?= Enlace::url('usuarios/borrar/'.$usuario['id_matri'])?>" class="btn btn-danger" 
                                             onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?');">Eliminar</a>                     
                                         </div>
+                                        <?php } ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

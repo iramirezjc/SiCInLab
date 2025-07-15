@@ -13,7 +13,7 @@ ob_start();
 						</div>
 						<div class="mb-3">
 							<label>Autoriza:</label>
-							<input type="text" class="form-control" id="usuario" name="usuario" value="5681" readonly/><!--Usuario de sesion-->
+							<input type="text" class="form-control" id="usuario" name="usuario" value="<?= $_SESSION['usuario']['matricula'] ?>" readonly/><!--Usuario de sesion-->
 						</div>
 						<div class="mb-3">
 							<label for="solicita" class="form-label">Solicita:</label>

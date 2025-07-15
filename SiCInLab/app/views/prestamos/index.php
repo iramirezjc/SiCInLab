@@ -12,7 +12,7 @@ ob_start();
                 <form action="<?= Enlace::url('prestamos/registrarPrestamo') ?>" method="POST" accept-charset="utf-8">
                     <div class="mb-3">
                         <label for="usuario" class="form-label">Usuario</label>
-        	            <input type="text" class="form-control" id="usuario" name="usuario"  value="5601" readonly/><!--Usuario se sesion-->
+        	            <input type="text" class="form-control" id="usuario" name="usuario"  value="<?= $_SESSION['usuario']['matricula'] ?>" readonly/><!--Usuario se sesion-->
                     </div>
                     <div class="mb-3">
                         <label for="solicita" class="form-label">Matricula del prestador:</label>

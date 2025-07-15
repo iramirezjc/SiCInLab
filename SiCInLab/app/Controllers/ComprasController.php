@@ -8,6 +8,7 @@ class ComprasController extends Controller {
     private $compra;
 
     public function __construct() {
+        parent::__construct(true);
         $this->compra = new Compra();        
     }
 

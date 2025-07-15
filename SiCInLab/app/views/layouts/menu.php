@@ -4,14 +4,22 @@ use Core\Enlace;
 <div class="menu-index">
     <div class="container-menu">
         <ul class="modulos">
+            <?php if ($_SESSION['usuario']['rol'] === '1') {?>
             <li>
-                <a href="">Usuarios</a>
+                <a href="#">Usuarios</a>
                 <ul class="pantallas">
                     <li><a href="<?= Enlace::url('usuarios/index'); ?>">usuarios registrados</a></li>
                     <li><a href="<?= Enlace::url('usuarios/alta'); ?>">registrar usuario</a></li>
                 </ul>
             </li>
-            <li><a href="<?= Enlace::url('servicio-sala/reservacion'); ?>">Servicio a sala</a></li>
+            <?php } ?>
+            <li>
+                <a href="#">Servicio a sala</a>
+                <ul class="pantallas">
+                    <li><a href="<?= Enlace::url('servicio-sala/reservacion'); ?>">Reservar Sala</a></li>
+                    <li><a href="<?= Enlace::url('servicio-sala/acceso'); ?>">Acceso a Sala</a></li>
+                </ul>
+            </li>
             <li><a href="<?= Enlace::url('prestamos/index'); ?>">Prestamos</a></li>
             <li><a href="<?= Enlace::url('devoluciones/index'); ?>">Devoluciones</a></li>
             <li><a href="<?= Enlace::url('compras/index'); ?>">Compras</a></li>

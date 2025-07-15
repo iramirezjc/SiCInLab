@@ -8,6 +8,7 @@ class IncidenciasController extends Controller {
     private $incidencia;
     
     public function __construct() {
+        parent::__construct(true);
         $this->incidencia = new Incidencia();        
     }
     public function index() {

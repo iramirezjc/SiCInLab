@@ -12,6 +12,7 @@ class PrestamoConsumiblesController extends Controller {
     private $detallePrestamoConsumibe;
 
     public function __construct() {
+        parent::__construct(true);
         $this->reactivo = new Reactivo(); 
         $this->prestamoConsumible = new PrestamoConsumible();
         $this->detallePrestamoConsumibe = new DetallePrestamoConsumible();       

@@ -8,6 +8,7 @@ class MobiliariosController extends Controller {
     private $mobiliario;
 
     public function __construct() {
+        parent::__construct(true);
         $this->mobiliario = new Mobiliario();
     }
     public function index() {

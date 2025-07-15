@@ -1,3 +1,6 @@
+<?php
+use Core\Enlace;
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -29,9 +32,9 @@
                     <a href="" class="logo">Logo</a>
                     <nav class="navbar">
                         <ul>
-                            <li><a href="/usuario">Usuario</a></li>
-                            <li><a href="/Inicio">Inicio</a></li>
-                            <li><a href="/salir">Salir</a></li>
+                            <li><a href="<?= Enlace::url('sitio/panel')?>">Inicio</a></li>
+                            <li><a href="/usuario"><?= $_SESSION['usuario']['nombreUsuario'] ?></a></li>
+                            <li><a href="<?= Enlace::url('sitio/cerrarSesion')?>">Cerrar Sesión</a></li>
                         </ul>
                     </nav>
                 </div>

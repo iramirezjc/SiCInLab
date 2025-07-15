@@ -20,6 +20,7 @@ class DetalleComprasController extends Controller {
     private $reactivo;
 
     public function __construct() {
+        parent::__construct(true);
         $this->detalleCompra = new DetalleCompra();  
         $this->compra = new Compra();
         $this->categoria = new Categoria();  

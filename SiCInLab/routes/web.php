@@ -22,6 +22,7 @@ use Core\Route;
 Route::get('login', [SitioController::class, 'login']);
 Route::post('iniciarSesion', [SitioController::class, 'iniciarSesion']);
 Route::get('sitio/panel', [SitioController::class, 'panel']);
+Route::get('sitio/cerrarSesion', [SitioController::class, 'cerrarSesion']);
 /**
  * Rutas de CRUD Equipos
  */

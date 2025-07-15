@@ -20,6 +20,7 @@ class PrestamosController extends Controller {
     private $mobiliarios;
 
     public function __construct() {
+        parent::__construct(true);
         $this->prestamoConsumible = new PrestamoConsumible(); 
         $this->detallePrestamo = new DetallePrestamo(); 
         $this->prestamo = new Prestamo();  

@@ -22,6 +22,7 @@ class InventariosController extends Controller {
     private $pdf;
 
     public function __construct() {
+        parent::__construct(true);
         $this->inventario = new Inventario();
         $this->desgloseInventario = new DesgloseInventario();
         $this->categoria = new Categoria(); 

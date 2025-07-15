@@ -8,13 +8,14 @@ class EquiposController extends Controller {
     private $equipo;
 
     public function __construct() {
+        parent::__construct(true);
         $this->equipo = new Equipo();
     }
     
     public function index() {
-        $equipos = $this->equipo->listar();
+        $lista = $this->equipo->listar();
 
-        $this->render('equipos/index', ['equipos' => $equipos]);
+        $this->render('equipos/index', ['equipos' => $lista]);
     }
     public function alta() {
         $this->render('equipos/alta');
