@@ -7,7 +7,7 @@ class DataBase {
 	protected $host = "localhost";
 	protected $username = "root";
 	protected $password = "";
-	protected $database = "lab";
+	protected $database = "sicinlab";
 	protected $mysql;
 
 	public function __construct() {
