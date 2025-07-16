@@ -20,7 +20,28 @@ class Solicitud extends Model {
 
         return $this->db->query($sql);
     }
-    public function sanitizar($datos) {
+    public function listarPorDia($fecha) {
+        $sql = "SELECT s.solicitante,
+                       s.fk_matri,
+                       h.hora_inicio,
+                       h.id_horario,
+                       h.fecha, 
+                       h.asunt,
+                       CASE h.estatus
+                        WHEN 'R' THEN 'Reservado'
+                        WHEN 'O' THEN 'Ocupado'
+                        WHEN 'F' THEN 'Finalizado'
+                        ELSE 'Desconocido'
+                       END AS estado
+                FROM solicitud s 
+                INNER JOIN horario h ON s.id_solicitud = h.fk_solicitud
+                WHERE h.fecha = STR_TO_DATE('$fecha', '%Y-%m-%d')
+                    AND h.estatus != 'F'";
+        $result = $this->db->query($sql);
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+    private function sanitizar($datos) {
         return [
             'solicitante' => $datos['solicitante'],
             'usuario' => $datos['usuario'],

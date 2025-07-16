@@ -29,7 +29,6 @@ use Core\Enlace;
             <li><a href="<?= Enlace::url('reactivos/index'); ?>">Reactivos</a></li>
             <li><a href="<?= Enlace::url('inventarios/index'); ?>">Inventario</a></li>
             <li><a href="<?= Enlace::url('incidencias/index'); ?>">Incidencias</a></li>
-            <li><a href="/servicios">Graficas</a></li>
         </ul>
     </div>
 </div>

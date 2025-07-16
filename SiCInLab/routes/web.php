@@ -106,6 +106,9 @@ Route::get('servicio-sala/reservacion', [ServicioSalaController::class, 'reserva
 Route::get('servicio-sala/listaReservaciones', [ServicioSalaController::class, 'listaReservaciones']);
 Route::get('servicio-sala/horasDisponibles', [ServicioSalaController::class, 'horasDisponibles']);
 Route::post('servicio-sala/registrarReservacion', [ServicioSalaController::class, 'registrarReservacion']);
+Route::get('servicio-sala/acceso', [ServicioSalaController::class, 'acceso']);
+Route::post('servicio-sala/registrarAccesoSala', [ServicioSalaController::class, 'registrarAccesoSala']);
+Route::get('servicio-sala/terminaActividad/{id:\d+}', [ServicioSalaController::class, 'terminaActividad']);
 /**
  * Rutas Usuarios
  */

@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use Core\Controller;
 use App\Models\Horario;
+use App\Models\ServicioAccesoLaboratorio;
 use App\Models\Solicitud;
 use DateInterval;
 use DatePeriod;
@@ -11,11 +12,13 @@ use DateTime;
 class ServicioSalaController extends Controller {
     private $horarios;
     private $solicitudes;
+    private $servi_acces_lab;
 
     public function __construct() {
         parent::__construct(true);
         $this->horarios = new Horario();
-        $this->solicitudes = new Solicitud();        
+        $this->solicitudes = new Solicitud();   
+        $this->servi_acces_lab = new ServicioAccesoLaboratorio();     
     }
     public function reservaciones() {
         $this->render('servicio-sala/reservacion');
@@ -111,7 +114,36 @@ class ServicioSalaController extends Controller {
             'mensaje' => 'Laboratorio reservado con éxito.'
         ]);
     }
-    function convertirHoraA24($hora12) {
+    public function acceso() {
+        $lista = $this->solicitudes->listarPorDia(date('y-m-d'));
+
+        $this->render('servicio-sala/acceso', ['solicitudes' => $lista]);
+    }
+    public function registrarAccesoSala() {
+        $datos = [
+            'id_horario' => $_POST['id_horario'],
+            'solicitante' => $_POST['solicitante'],
+            'asunto' => $_POST['asunto'],
+            'autoriza' => $_POST['autoriza'],
+            'estado' => $_POST['estado'],
+            'fecha' => $_POST['fecha']
+        ];
+        $this->horarios->cambiarEstadoReservacion($datos['id_horario'], $datos['estado']);
+        $this->servi_acces_lab->insertar($datos);
+
+        header('Content-Type: application/json');
+        echo json_encode([
+            'success' => true, 
+            'mensaje' => 'Ingreso a la sala registrado con éxito.'
+        ]);
+    }
+    public function terminaActividad($id_horario) {
+        $idHorario = (int) $id_horario;
+        $this->horarios->cambiarEstadoReservacion($idHorario, 'F');
+
+        return $this->redirect('servicio-sala/acceso');
+    }
+    private function convertirHoraA24($hora12) {
         $hora24 = DateTime::createFromFormat('h:i A', trim($hora12));
 
         return $hora24 ? $hora24->format('H:i:s') : null;

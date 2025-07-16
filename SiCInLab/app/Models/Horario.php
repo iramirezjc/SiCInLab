@@ -32,4 +32,11 @@ class Horario extends Model {
 
         return $this->db->query($sql);
     }
+    public function cambiarEstadoReservacion($id_horario, $estado) {
+        $sql = "UPDATE horario
+                SET estatus = '$estado'
+                WHERE id_horario = $id_horario";
+        
+        return $this->db->query($sql);
+    }
 }
