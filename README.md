@@ -19,7 +19,7 @@ Sistema de Control de Inventarios de Laboratorio.
 1. Clona el repositorio.
 2. Ejecuta `composer install` dentro de la carpeta `SiCInLab/`.
 3. Configura tu base de datos usando los scripts en la carpeta `BD/`.
-4. Apunta tu servidor local (Laragon) al subdirectorio `SiCInLab/SiCInLab`.
+4. Apunta tu servidor local (Laragon) al subdirectorio `SiCInLab/`.
 
 ## Base de Datos
 
