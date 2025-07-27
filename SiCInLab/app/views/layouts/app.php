@@ -29,11 +29,11 @@ use Core\Enlace;
         <div class="row fixed-top shadow-sm">
             <header class="header">
                 <div class="cabecera logo-nav-container">
-                    <a href="" class="logo">Logo</a>
+                    <a href="" class="logo">SiCInLab</a>
                     <nav class="navbar">
-                        <ul>
+                        <ul> 
                             <li><a href="<?= Enlace::url('sitio/panel')?>">Inicio</a></li>
-                            <li><a href="/usuario"><?= $_SESSION['usuario']['nombreUsuario'] ?></a></li>
+                            <li><a href="<?= Enlace::url('perfil-usuario/mi-perfil')?>"><?= $_SESSION['usuario']['nombreUsuario'] ?></a></li>
                             <li><a href="<?= Enlace::url('sitio/cerrarSesion')?>">Cerrar Sesión</a></li>
                         </ul>
                     </nav>

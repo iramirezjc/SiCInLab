@@ -13,6 +13,7 @@ class UsuariosController extends Controller {
         parent::__construct(true);
         $this->usuarios = new Usuario();
         $this->nivelUsuario = new NivelUsuario();
+
         if ($_SESSION['usuario']['rol'] != '1') {
             $this->redirect('sitio/panel');
             exit;

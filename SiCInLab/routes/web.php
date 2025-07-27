@@ -15,6 +15,7 @@ use App\Controllers\IncidenciasController;
 use App\Controllers\InventariosController;
 use App\Controllers\ServicioSalaController;
 use App\Controllers\UsuariosController;
+use App\Controllers\PerfilUsuarioController;
 use Core\Route;
 /**
  * acceso
@@ -119,5 +120,13 @@ Route::get('usuarios/editar/{id:\d+}', [UsuariosController::class, 'editar']);
 Route::post('usuarios/editar/{id:\d+}', [UsuariosController::class, 'actualizarDatos']);
 Route::get('usuarios/buscador', [UsuariosController::class, 'buscador']);
 Route::get('usuarios/{accion:[a-z]+}/{id:\d+}', [UsuariosController::class]);
+/**
+ * Perfil del Usuario en Sesion
+ */
+Route::get('perfil-usuario/mi-perfil', [PerfilUsuarioController::class, 'miPerfil']);
+Route::get('perfil-usuario/cambiar-clave', [PerfilUsuarioController::class, 'cambiarContrasenia']);
+Route::post('perfil-usuario/guardaNuevaContrasenia', [PerfilUsuarioController::class, 'guardaNuevaContrasenia']);
+Route::get('perfil-usuario/editar', [PerfilUsuarioController::class, 'editar']);
+Route::post('perfil-usuario/modificar/{id:\d+}', [PerfilUsuarioController::class, 'modificar']);
 
 Route::handle();

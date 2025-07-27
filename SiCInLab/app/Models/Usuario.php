@@ -67,6 +67,14 @@ class Usuario extends Model {
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+    public function actualizaContrasenia($claveNueva, $matricula) {
+        $id_matri = (int) $matricula;
+        $sql = "UPDATE usuar
+                SET contr = '$claveNueva'
+                WHERE id_matri = $id_matri";
+
+        return $this->db->query($sql);
+    }
     private function sanitizar($datos) {
         $fecha = $this->validarFecha($datos['fechUsuario']) ? $this->db->real_escape_string($datos['fechUsuario']) : date('Y-m-d');
         return [
