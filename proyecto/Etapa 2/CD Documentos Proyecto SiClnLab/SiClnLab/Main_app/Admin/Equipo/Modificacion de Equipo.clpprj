@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<project name="C:\xampp\htdocs\Modificacion de Equipo\Modificacion de Equipo.clpprj">
+ <settings>
+  <PM_URL><![CDATA[http://localhost//Modificacion de Equipo/]]></PM_URL>
+  <PM_HOME_URL><![CDATA[http://localhost//Modificacion de Equipo/]]></PM_HOME_URL>
+  <PM_LIBS><![CDATA[]]></PM_LIBS>
+  <PM_FTP_CONNECTION><![CDATA[]]></PM_FTP_CONNECTION>
+  <PM_FTP_DIR><![CDATA[]]></PM_FTP_DIR>
+  <PM_FTP_UPLOAD_ON_SAVE><![CDATA[INT:0]]></PM_FTP_UPLOAD_ON_SAVE>
+ </settings>
+ <removed value=";"/>
+ <added value=""/>
+ <lastopfiles>
+  <file name="C:\xampp\htdocs\Modificacion de Equipo\MostrarEquipo.php"/>
+  <file name="C:\xampp\htdocs\Modificacion de Equipo\ModificacionDeEquipo.php"/>
+  <file name="C:\xampp\htdocs\Modificacion de Equipo\updateObjeto.php"/>
+  <file name="C:\xampp\htdocs\Modificacion de Equipo\conexion.php"/>
+  <file name="C:\xampp\htdocs\Modificacion de Equipo\AltaEquipo.php"/>
+  <file name="C:\xampp\htdocs\Modificacion de Equipo\DeleteEquip.php"/>
+  <file name="C:\xampp\htdocs\Modificacion de Equipo\InsertEquipo.php"/>
+  <lastactivefile name=""/>
+ </lastopfiles>
+ <todoblock/>
+ <dbgurls/>
+ <filescache>
+  <file name="C:\xampp\htdocs\Modificacion de Equipo\updateObjeto.php" crc="1555871113747"/>
+  <file name="C:\xampp\htdocs\Modificacion de Equipo\MostrarEquipo.php" crc="1559278014839"/>
+  <file name="C:\xampp\htdocs\Modificacion de Equipo\ModificacionDeEquipo.php" crc="1557304642507"/>
+  <file name="C:\xampp\htdocs\Modificacion de Equipo\InsertEquipo.php" crc="1559313565130"/>
+  <file name="C:\xampp\htdocs\Modificacion de Equipo\Equipo.php" crc="1559241778208"/>
+  <file name="C:\xampp\htdocs\Modificacion de Equipo\DeleteEquip.php" crc="1559231114226"/>
+  <file name="C:\xampp\htdocs\Modificacion de Equipo\conexion.php" crc="1557304636869"/>
+  <file name="C:\xampp\htdocs\Modificacion de Equipo\AltaEquipo.php" crc="1559282240195"/>
+ </filescache>
+</project>

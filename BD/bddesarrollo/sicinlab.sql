@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
 --
--- Host: localhost    Database: lab
+-- Host: localhost    Database: sicinlab
 -- ------------------------------------------------------
 -- Server version	8.0.30
 
@@ -149,7 +149,7 @@ CREATE TABLE `detall_devol` (
   KEY `fk_detall_devol_categ1_idx` (`fk_categ`),
   CONSTRAINT `fk_detall_devol_categ1` FOREIGN KEY (`fk_categ`) REFERENCES `categ` (`id_categ`),
   CONSTRAINT `fk_detall_devol_devol1` FOREIGN KEY (`fk_devol`) REFERENCES `devol` (`id_devol`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -158,7 +158,7 @@ CREATE TABLE `detall_devol` (
 
 LOCK TABLES `detall_devol` WRITE;
 /*!40000 ALTER TABLE `detall_devol` DISABLE KEYS */;
-INSERT INTO `detall_devol` VALUES (1,1,1,1,3),(2,2,2,1,5),(3,3,1,1,1),(4,1,1,1,1),(5,1,1,1,1),(6,1,1,1,1),(8,3,1,12,2),(9,3,2,1,2);
+INSERT INTO `detall_devol` VALUES (1,1,1,1,3),(2,2,2,1,5),(3,3,1,1,1),(4,1,1,1,1),(5,1,1,1,1),(6,1,1,1,1),(8,3,1,12,2),(9,3,2,1,2),(10,4,3,11,1),(11,5,1,1,1),(12,5,1,1,1),(13,5,1,10,1),(14,5,1,10,1),(21,5,1,10,1),(22,5,2,10,1),(23,3,1,12,2),(24,3,2,1,2),(26,8,3,13,1),(27,8,3,13,1),(33,13,1,12,9),(34,14,1,12,10),(35,5,2,10,1),(36,5,3,13,2),(37,3,2,1,1);
 /*!40000 ALTER TABLE `detall_devol` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -180,7 +180,7 @@ CREATE TABLE `detall_prest` (
   KEY `fk_detall_prest_categ1_idx` (`fk_categ`),
   CONSTRAINT `fk_detall_prest_categ1` FOREIGN KEY (`fk_categ`) REFERENCES `categ` (`id_categ`),
   CONSTRAINT `fk_detall_prest_prest1` FOREIGN KEY (`fk_prest`) REFERENCES `prest` (`id_prest`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -189,7 +189,7 @@ CREATE TABLE `detall_prest` (
 
 LOCK TABLES `detall_prest` WRITE;
 /*!40000 ALTER TABLE `detall_prest` DISABLE KEYS */;
-INSERT INTO `detall_prest` VALUES (1,1,1,1,0),(2,2,2,1,0),(3,3,1,1,0),(4,3,1,12,10),(5,3,2,1,6),(6,5,1,1,0),(7,5,2,1,0),(8,5,3,11,1),(9,6,1,1,2),(11,6,1,10,3),(12,6,2,10,2),(13,6,3,13,4),(14,7,2,7,3);
+INSERT INTO `detall_prest` VALUES (1,1,1,1,0),(2,2,2,1,0),(3,3,1,1,0),(4,3,1,12,10),(5,3,2,1,6),(6,5,1,1,0),(7,5,2,1,0),(8,5,3,11,0),(9,6,1,1,0),(11,6,1,10,0),(12,6,2,10,0),(13,6,3,13,4),(14,7,2,7,3),(99,9,1,12,0),(101,10,1,12,0);
 /*!40000 ALTER TABLE `detall_prest` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -238,7 +238,7 @@ CREATE TABLE `devol` (
   PRIMARY KEY (`id_devol`),
   KEY `fk_devol_prest1_idx` (`fk_prest`),
   CONSTRAINT `fk_devol_prest1` FOREIGN KEY (`fk_prest`) REFERENCES `prest` (`id_prest`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -247,7 +247,7 @@ CREATE TABLE `devol` (
 
 LOCK TABLES `devol` WRITE;
 /*!40000 ALTER TABLE `devol` DISABLE KEYS */;
-INSERT INTO `devol` VALUES (1,'2019-10-26 00:00:00','total ',1),(2,'2019-10-25 00:00:00','En perfecto estado',2),(3,'2019-10-31 00:00:00','completo',3);
+INSERT INTO `devol` VALUES (1,'2019-10-26 00:00:00','total ',1),(2,'2019-10-25 00:00:00','En perfecto estado',2),(3,'2019-10-31 00:00:00','completo',3),(4,'2025-07-21 00:00:00','todo bien',5),(5,'2025-07-21 00:00:00','todo bien',6),(8,'2025-07-28 00:00:00','Parcial Nueva Devolución',8),(13,'2025-07-28 00:00:00','Completa Buen Estado',9),(14,'2025-07-28 00:00:00','Total Buen estado',10);
 /*!40000 ALTER TABLE `devol` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -274,7 +274,7 @@ CREATE TABLE `equip` (
 
 LOCK TABLES `equip` WRITE;
 /*!40000 ALTER TABLE `equip` DISABLE KEYS */;
-INSERT INTO `equip` VALUES (1,'Probeta',1,'                            instrumento volumétrico que consiste en un cilindro graduado de vidrio común que permite contener líquidos y sirve para medir volúmenes de forma aproximada                 ','vidrio'),(10,'Matraz',27,'Tiene un cuello estrecho y se expande hacia su base. Esto permite una fácil mezcla y agitación del matraz sin demasiado riesgo de derrames. ','vidrio'),(11,'Matraz Florencia',364,'Tiene un fondo redondo y un cuello largo. Se utiliza para contener líquidos y se puede girar y calentar fácilmente. Gracias a su forma ovalada permite que las sustancias se calienten de manera uniform','vidrio'),(12,'Tubos de ensayo',25,'Los tubos de ensayo se utilizan para contener muestras pequeñas.\r\nSe usan principalmente para la evaluación y comparación cualitativa.','20'),(13,'Tubos de ensayo Vidrio de reloj',20,'Pieza redonda de vidrio que es ligeramente cóncava/convexa.\r\nSe pueden usar con fines de evaporación y también pueden funcionar como tapa para un vaso de precipitados.','vidrio'),(15,'Pipetas de laboratorio',20,'Son para medir un volumen exacto de líquido y colocarlo en otro contenedor.','Vidrio'),(16,'Bureta de vidrio',20,'Tubo de vidrio que está abierto en la parte superior y llega a una abertura puntiaguda en la parte inferior.','Vidrio'),(17,'Termómetro de laboratorio',12,'Se usa para medir la temperatura de los líquidos.','Vidrio'),(19,'Matraz',20,'Tiene un cuello estrecho y se expande hacia su base. Esto permite una fácil mezcla y agitación del matraz sin demasiado riesgo de derrames. ','vidrio'),(20,'Matraz Florencia',20,'Tiene un fondo redondo y un cuello largo. Se utiliza para contener líquidos y se puede girar y calentar fácilmente. Gracias a su forma ovalada permite que las sustancias se calienten de manera uniform','vidrio'),(21,'Tubos de ensayo',20,'Los tubos de ensayo se utilizan para contener muestras pequeñas.\r\nSe usan principalmente para la evaluación y comparación cualitativa.','20'),(22,'Tubos de ensayo Vidrio de reloj',20,'Pieza redonda de vidrio que es ligeramente cóncava/convexa.\r\nSe pueden usar con fines de evaporación y también pueden funcionar como tapa para un vaso de precipitados.','vidrio'),(23,'Embudo de laboratorio',20,'Es como cualquier otro embudo, excepto que fue diseñado para ser utilizado en un laboratorio.','Plástico'),(24,'Pipetas de laboratorio',20,'Son para medir un volumen exacto de líquido y colocarlo en otro contenedor.','Vidrio'),(25,'Bureta de vidrio',20,'Tubo de vidrio que está abierto en la parte superior y llega a una abertura puntiaguda en la parte inferior.','Vidrio'),(26,'Termómetro de laboratorio',65,'Se usa para medir la temperatura de los líquidos.','Vidrio'),(28,'Balanza de laboratorio',10,'Se usa una balanza para pesar productos quimicos','Plastico'),(46,'Microscopio x20',4,'                    Este microscopio estereoscópico es de gran ayuda en reparación de tarjetas electrónicas (micro soldaduras). Permite la observación de objetos tridimensionales.                ','S/D');
+INSERT INTO `equip` VALUES (1,'Probeta',3,'                            instrumento volumétrico que consiste en un cilindro graduado de vidrio común que permite contener líquidos y sirve para medir volúmenes de forma aproximada                 ','vidrio'),(10,'Matraz',30,'Tiene un cuello estrecho y se expande hacia su base. Esto permite una fácil mezcla y agitación del matraz sin demasiado riesgo de derrames. ','vidrio'),(11,'Matraz Florencia',364,'Tiene un fondo redondo y un cuello largo. Se utiliza para contener líquidos y se puede girar y calentar fácilmente. Gracias a su forma ovalada permite que las sustancias se calienten de manera uniform','vidrio'),(12,'Tubos de ensayo',31,'Los tubos de ensayo se utilizan para contener muestras pequeñas.\r\nSe usan principalmente para la evaluación y comparación cualitativa.','20'),(13,'Tubos de ensayo Vidrio de reloj',20,'Pieza redonda de vidrio que es ligeramente cóncava/convexa.\r\nSe pueden usar con fines de evaporación y también pueden funcionar como tapa para un vaso de precipitados.','vidrio'),(15,'Pipetas de laboratorio',20,'Son para medir un volumen exacto de líquido y colocarlo en otro contenedor.','Vidrio'),(16,'Bureta de vidrio',20,'Tubo de vidrio que está abierto en la parte superior y llega a una abertura puntiaguda en la parte inferior.','Vidrio'),(17,'Termómetro de laboratorio',12,'Se usa para medir la temperatura de los líquidos.','Vidrio'),(19,'Matraz',20,'Tiene un cuello estrecho y se expande hacia su base. Esto permite una fácil mezcla y agitación del matraz sin demasiado riesgo de derrames. ','vidrio'),(20,'Matraz Florencia',20,'Tiene un fondo redondo y un cuello largo. Se utiliza para contener líquidos y se puede girar y calentar fácilmente. Gracias a su forma ovalada permite que las sustancias se calienten de manera uniform','vidrio'),(21,'Tubos de ensayo',20,'Los tubos de ensayo se utilizan para contener muestras pequeñas.\r\nSe usan principalmente para la evaluación y comparación cualitativa.','20'),(22,'Tubos de ensayo Vidrio de reloj',20,'Pieza redonda de vidrio que es ligeramente cóncava/convexa.\r\nSe pueden usar con fines de evaporación y también pueden funcionar como tapa para un vaso de precipitados.','vidrio'),(23,'Embudo de laboratorio',20,'Es como cualquier otro embudo, excepto que fue diseñado para ser utilizado en un laboratorio.','Plástico'),(24,'Pipetas de laboratorio',20,'Son para medir un volumen exacto de líquido y colocarlo en otro contenedor.','Vidrio'),(25,'Bureta de vidrio',20,'Tubo de vidrio que está abierto en la parte superior y llega a una abertura puntiaguda en la parte inferior.','Vidrio'),(26,'Termómetro de laboratorio',65,'Se usa para medir la temperatura de los líquidos.','Vidrio'),(28,'Balanza de laboratorio',10,'Se usa una balanza para pesar productos quimicos','Plastico'),(46,'Microscopio x20',4,'                    Este microscopio estereoscópico es de gran ayuda en reparación de tarjetas electrónicas (micro soldaduras). Permite la observación de objetos tridimensionales.                ','S/D');
 /*!40000 ALTER TABLE `equip` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -292,10 +292,11 @@ CREATE TABLE `horario` (
   `fk_solicitud` int NOT NULL,
   `hora_inicio` time NOT NULL,
   `hora_fin` time NOT NULL,
+  `estatus` char(1) DEFAULT 'R' COMMENT 'R reservado, O ocupado, F finalizado',
   PRIMARY KEY (`id_horario`),
   KEY `fk_horario_solicitud1_idx` (`fk_solicitud`),
   CONSTRAINT `fk_horario_solicitud1` FOREIGN KEY (`fk_solicitud`) REFERENCES `solicitud` (`id_solicitud`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -304,7 +305,7 @@ CREATE TABLE `horario` (
 
 LOCK TABLES `horario` WRITE;
 /*!40000 ALTER TABLE `horario` DISABLE KEYS */;
-INSERT INTO `horario` VALUES (1,'2019-10-25','Actividad',1,'08:00:00','09:00:00'),(2,'2019-10-28','Actividad',1,'08:00:00','09:00:00'),(3,'2019-11-12','Actividad',1,'08:00:00','09:00:00'),(4,'2019-11-26','Actividad',1,'08:00:00','09:00:00'),(5,'2019-11-06','Actividad',1,'08:00:00','09:00:00'),(6,'2025-07-02','prueba',5,'10:00:00','11:00:00'),(7,'2025-07-03','clase en sala',1,'08:00:00','10:00:00'),(8,'2025-07-04','clase en sala',3,'08:00:00','10:00:00'),(9,'2025-07-04','practica laboratorio',6,'10:00:00','11:00:00'),(10,'2025-07-10','clase en sala',1,'08:00:00','09:00:00');
+INSERT INTO `horario` VALUES (1,'2019-10-25','Actividad',1,'08:00:00','09:00:00','R'),(2,'2019-10-28','Actividad',1,'08:00:00','09:00:00','R'),(3,'2019-11-12','Actividad',1,'08:00:00','09:00:00','R'),(4,'2019-11-26','Actividad',1,'08:00:00','09:00:00','R'),(5,'2019-11-06','Actividad',1,'08:00:00','09:00:00','R'),(6,'2025-07-02','prueba',5,'10:00:00','11:00:00','R'),(7,'2025-07-03','clase en sala',1,'08:00:00','10:00:00','R'),(8,'2025-07-04','clase en sala',3,'08:00:00','10:00:00','R'),(9,'2025-07-04','practica laboratorio',6,'10:00:00','11:00:00','R'),(10,'2025-07-10','clase en sala',1,'08:00:00','09:00:00','R'),(11,'2025-07-16','Prueba',7,'08:00:00','09:00:00','F'),(12,'2025-07-16','Clase de quimica',2,'14:00:00','15:00:00','R');
 /*!40000 ALTER TABLE `horario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -389,7 +390,7 @@ CREATE TABLE `mater` (
 
 LOCK TABLES `mater` WRITE;
 /*!40000 ALTER TABLE `mater` DISABLE KEYS */;
-INSERT INTO `mater` VALUES (1,'Matraz',500,12,'Zahfer',4),(7,'Vaso de precipitado',500,30,'Duran',4),(8,'Mortero',300,16,'Ibili',4),(9,'Tubo de ensayo',14,33,'Fisherbrand',4),(10,'Bureta',225,7,'Proton',4),(11,'Pipeta',20,10,'Kimax',4),(12,'Prueba de tabal materiales',34,2,'Prueba',4),(14,'Probeta',50,3,'UNLINE',4);
+INSERT INTO `mater` VALUES (1,'Matraz',500,15,'Zahfer',4),(7,'Vaso de precipitado',500,40,'Duran',4),(8,'Mortero',300,16,'Ibili',4),(9,'Tubo de ensayo',14,33,'Fisherbrand',4),(10,'Bureta',225,9,'Proton',4),(11,'Pipeta',20,10,'Kimax',4),(12,'Prueba de tabal materiales',34,2,'Prueba',4),(14,'Probeta',50,3,'UNLINE',4);
 /*!40000 ALTER TABLE `mater` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -416,7 +417,7 @@ CREATE TABLE `mobil` (
 
 LOCK TABLES `mobil` WRITE;
 /*!40000 ALTER TABLE `mobil` DISABLE KEYS */;
-INSERT INTO `mobil` VALUES (10,'Mesa','Metal','Mesa central',2),(11,'Mesa','Metal con sistema el','Mesa de Balanza',1),(12,'Silla','Acero/tapizado','Sillas de respaldo',20),(13,'Silla','Acero/tapizado','Taburete',20),(14,'Estante','Acero inoxidable/vid','Estante de suelo',3),(15,'Silla','Acero y plastico','Silla baja giratoria',6),(16,'Estantes','lamina de acero/vidr','Mueble para colección de muestras',3),(17,'Fregaderos','Acero  inoxidable','Fregadero',3),(18,'Vitrina','Lamina de acero','Vitrina de gases con superficie de trabajo',2),(19,'Armario','Acero inoxidable','Armario bajo de seguridad para guardar líquid',2),(20,'Mesa','Metal','Mesa central',1),(21,'Mesa','Metal con sistema el','Mesa de Balanza',2),(22,'Silla','Acero/tapizado','Sillas de respaldo',20),(23,'Silla','Acero/tapizado','Taburete',20),(24,'Estante','Acero inoxidable/vid','Estante de suelo',3),(25,'Silla','Acero y plastico','Silla baja giratoria',6),(26,'Estantes','lamina de acero/vidr','Mueble para colección de muestras',3),(27,'Fregaderos','Acero  inoxidable','Fregadero',2),(28,'Vitrina','Lamina de acero','Vitrina de gases con superficie de trabajo',2),(29,'Armario','Acero inoxidable','Armario bajo de seguridad para guardar líquid',2),(30,'Mesa','Metalica','Mesa de exposicion 2x3',2),(31,'Mesa','Metal','Mesa experimental',10),(33,'','','',0);
+INSERT INTO `mobil` VALUES (10,'Mesa','Metal','Mesa central',2),(11,'Mesa','Metal con sistema el','Mesa de Balanza',2),(12,'Silla','Acero/tapizado','Sillas de respaldo',20),(13,'Silla','Acero/tapizado','Taburete',24),(14,'Estante','Acero inoxidable/vid','Estante de suelo',3),(15,'Silla','Acero y plastico','Silla baja giratoria',6),(16,'Estantes','lamina de acero/vidr','Mueble para colección de muestras',3),(17,'Fregaderos','Acero  inoxidable','Fregadero',3),(18,'Vitrina','Lamina de acero','Vitrina de gases con superficie de trabajo',2),(19,'Armario','Acero inoxidable','Armario bajo de seguridad para guardar líquid',2),(20,'Mesa','Metal','Mesa central',1),(21,'Mesa','Metal con sistema el','Mesa de Balanza',2),(22,'Silla','Acero/tapizado','Sillas de respaldo',20),(23,'Silla','Acero/tapizado','Taburete',20),(24,'Estante','Acero inoxidable/vid','Estante de suelo',3),(25,'Silla','Acero y plastico','Silla baja giratoria',6),(26,'Estantes','lamina de acero/vidr','Mueble para colección de muestras',3),(27,'Fregaderos','Acero  inoxidable','Fregadero',2),(28,'Vitrina','Lamina de acero','Vitrina de gases con superficie de trabajo',2),(29,'Armario','Acero inoxidable','Armario bajo de seguridad para guardar líquid',2),(30,'Mesa','Metalica','Mesa de exposicion 2x3',2),(31,'Mesa','Metal','Mesa experimental',10);
 /*!40000 ALTER TABLE `mobil` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -460,7 +461,7 @@ CREATE TABLE `prest` (
   PRIMARY KEY (`id_prest`),
   KEY `fk_prest_usuar1_idx` (`fk_usuar_matri`),
   CONSTRAINT `fk_prest_usuar1` FOREIGN KEY (`fk_usuar_matri`) REFERENCES `usuar` (`id_matri`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -469,7 +470,7 @@ CREATE TABLE `prest` (
 
 LOCK TABLES `prest` WRITE;
 /*!40000 ALTER TABLE `prest` DISABLE KEYS */;
-INSERT INTO `prest` VALUES (1,5681,5683,'2019-10-25 00:00:00','2019-10-28 00:00:00'),(2,5681,5677,'2019-10-25 00:00:00','2019-10-29 00:00:00'),(3,5681,5683,'2019-10-25 00:00:00','2019-10-28 00:00:00'),(4,5681,5684,'2019-10-25 00:00:00','2019-10-28 00:00:00'),(5,5681,5677,'2019-10-31 00:00:00','2019-11-01 00:00:00'),(6,5601,5677,'2025-07-09 00:00:00','2025-07-09 00:00:00'),(7,5601,5684,'2025-07-09 00:00:00','2025-07-11 00:00:00');
+INSERT INTO `prest` VALUES (1,5681,5683,'2019-10-25 00:00:00','2019-10-28 00:00:00'),(2,5681,5677,'2019-10-25 00:00:00','2019-10-29 00:00:00'),(3,5681,5683,'2019-10-25 00:00:00','2019-10-28 00:00:00'),(4,5681,5684,'2019-10-25 00:00:00','2019-10-28 00:00:00'),(5,5681,5677,'2019-10-31 00:00:00','2019-11-01 00:00:00'),(6,5601,5677,'2025-07-09 00:00:00','2025-07-09 00:00:00'),(7,5601,5684,'2025-07-09 00:00:00','2025-07-11 00:00:00'),(8,1000,5622,'2025-07-28 00:00:00','2025-07-30 00:00:00'),(9,1000,5623,'2025-07-28 00:00:00','2025-07-30 00:00:00'),(10,1000,5624,'2025-07-28 00:00:00','2025-07-30 00:00:00');
 /*!40000 ALTER TABLE `prest` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -551,7 +552,7 @@ CREATE TABLE `servi_acces_labor` (
   PRIMARY KEY (`id_acces_lab`),
   KEY `fk_servi_acces_labor_usuar1_idx` (`fk_usuar_matri`),
   CONSTRAINT `fk_servi_acces_labor_usuar1` FOREIGN KEY (`fk_usuar_matri`) REFERENCES `usuar` (`id_matri`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -560,6 +561,7 @@ CREATE TABLE `servi_acces_labor` (
 
 LOCK TABLES `servi_acces_labor` WRITE;
 /*!40000 ALTER TABLE `servi_acces_labor` DISABLE KEYS */;
+INSERT INTO `servi_acces_labor` VALUES (1,'2025-07-16 00:00:00','Prueba','2025-07-16 00:00:00',1000,5601);
 /*!40000 ALTER TABLE `servi_acces_labor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -577,7 +579,7 @@ CREATE TABLE `solicitud` (
   PRIMARY KEY (`id_solicitud`),
   KEY `fk_solicitud_usuar1_idx` (`fk_matri`),
   CONSTRAINT `fk_solicitud_usuar1` FOREIGN KEY (`fk_matri`) REFERENCES `usuar` (`id_matri`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -586,7 +588,7 @@ CREATE TABLE `solicitud` (
 
 LOCK TABLES `solicitud` WRITE;
 /*!40000 ALTER TABLE `solicitud` DISABLE KEYS */;
-INSERT INTO `solicitud` VALUES (1,5683,5681),(2,5682,5681),(3,5678,5681),(4,456,5681),(5,35678,5681),(6,5677,5681);
+INSERT INTO `solicitud` VALUES (1,5683,5681),(2,5682,5681),(3,5678,5681),(4,456,5681),(5,35678,5681),(6,5677,5681),(7,5601,1000);
 /*!40000 ALTER TABLE `solicitud` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -642,7 +644,7 @@ CREATE TABLE `usuar` (
 
 LOCK TABLES `usuar` WRITE;
 /*!40000 ALTER TABLE `usuar` DISABLE KEYS */;
-INSERT INTO `usuar` VALUES (0,'Administrador','Laboratorio','$argon2id$v=19$m=65536,t=4,p=1$Si93S0NvT0Zia3JzV2lHUg$S+7f5Ag8dfsuj+G/y/rF8q8Gwpu+MF/Fmz1c+nYm1+Q','2025-07-11','0000000000',1,'admin'),(1000,'Developer','Desarrollo','$argon2id$v=19$m=65536,t=4,p=1$U2RicnZkcENBWk5OM2x2eA$UAppp78Z+X4sWYc99dXy4ppREIbWZijd/zKmS5pUCDk','2025-07-11','9961111111',1,'dev'),(5601,'Servicio','Servicio','$argon2id$v=19$m=65536,t=4,p=1$OGZ6T256LzBqNWYuanA4Tg$K9O3QWVe8zY8MH8VTyxPJwcUHdQfkIgYK4wYvIfZk/c','2019-06-05','9960000000',2,'Servicio'),(5681,'Carlos Renato','Dzul Ramirez','solotulosabes','1998-08-08','9961106338',1,'Renato');
+INSERT INTO `usuar` VALUES (0,'Administrador','Laboratorio','$argon2id$v=19$m=65536,t=4,p=1$OUNMOVFXZ1BQbXZMUTNQLg$Qws78IwhQW9yPYnGBsSxvfjZadDWEDS6nXRVy1QurG8','2025-07-11','9967302560',1,'admin'),(1000,'Developer','Desarrollo','$argon2id$v=19$m=65536,t=4,p=1$dW42WGVhVzVNOTFGNktENQ$hQ/qsE9CB8+0JpiriU3wilaDKnGv+jIjaWdKwipZeS4','2025-07-11','9961151410',1,'dev'),(5601,'Servicio','Servicio','$argon2id$v=19$m=65536,t=4,p=1$OGZ6T256LzBqNWYuanA4Tg$K9O3QWVe8zY8MH8VTyxPJwcUHdQfkIgYK4wYvIfZk/c','2019-06-05','9960000000',2,'Servicio'),(5681,'Carlos Renato','Dzul Ramirez','solotulosabes','1998-08-08','9961106338',1,'Renato');
 /*!40000 ALTER TABLE `usuar` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -655,4 +657,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-15 16:05:10
+-- Dump completed on 2025-07-28 20:03:16

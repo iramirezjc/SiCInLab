@@ -1,0 +1,467 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+USE `mydb` ;
+
+-- -----------------------------------------------------
+-- Table `mydb`.`nivel_usuar`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`nivel_usuar` (
+  `id_nivel_usuar` INT NOT NULL AUTO_INCREMENT,
+  `nombr_nivel` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`id_nivel_usuar`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`usuar`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`usuar` (
+  `id_matri` INT NOT NULL,
+  `nombr` VARCHAR(100) NOT NULL,
+  `apell` VARCHAR(100) NOT NULL,
+  `contr` VARCHAR(45) NOT NULL,
+  `fecha_nacim` DATE NOT NULL,
+  `num_tel` VARCHAR(18) NOT NULL,
+  `fk_nivel_usuar` INT NOT NULL,
+  `user_name` VARCHAR(10) NOT NULL,
+  PRIMARY KEY (`id_matri`),
+  INDEX `fk_usuar_nivel_usuar_idx` (`fk_nivel_usuar` ASC),
+  CONSTRAINT `fk_usuar_nivel_usuar`
+    FOREIGN KEY (`fk_nivel_usuar`)
+    REFERENCES `mydb`.`nivel_usuar` (`id_nivel_usuar`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`servi_acces_labor`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`servi_acces_labor` (
+  `id_acces_lab` INT NOT NULL AUTO_INCREMENT,
+  `fecha` DATETIME NOT NULL,
+  `asunto` VARCHAR(200) NOT NULL,
+  `fecha_apart` DATETIME NOT NULL,
+  `fk_usuar_matri` INT NOT NULL,
+  `matric_solic` INT NOT NULL,
+  PRIMARY KEY (`id_acces_lab`),
+  INDEX `fk_servi_acces_labor_usuar1_idx` (`fk_usuar_matri` ASC),
+  CONSTRAINT `fk_servi_acces_labor_usuar1`
+    FOREIGN KEY (`fk_usuar_matri`)
+    REFERENCES `mydb`.`usuar` (`id_matri`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`compr`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`compr` (
+  `id_compr` INT NOT NULL AUTO_INCREMENT,
+  `fk_usuar_matri` INT NOT NULL,
+  `fecha` DATE NOT NULL,
+  `vendr` VARCHAR(45) NOT NULL,
+  `monto` DECIMAL(10,2) NOT NULL,
+  PRIMARY KEY (`id_compr`),
+  INDEX `fk_compr_usuar1_idx` (`fk_usuar_matri` ASC),
+  CONSTRAINT `fk_compr_usuar1`
+    FOREIGN KEY (`fk_usuar_matri`)
+    REFERENCES `mydb`.`usuar` (`id_matri`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`prest`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`prest` (
+  `id_prest` INT NOT NULL AUTO_INCREMENT,
+  `fk_usuar_matri` INT NOT NULL,
+  `matri_solic` INT NOT NULL,
+  `fecha_entre` DATETIME NOT NULL,
+  `fecha_devol` DATETIME NOT NULL,
+  PRIMARY KEY (`id_prest`),
+  INDEX `fk_prest_usuar1_idx` (`fk_usuar_matri` ASC),
+  CONSTRAINT `fk_prest_usuar1`
+    FOREIGN KEY (`fk_usuar_matri`)
+    REFERENCES `mydb`.`usuar` (`id_matri`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`devol`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`devol` (
+  `id_devol` INT NOT NULL AUTO_INCREMENT,
+  `fecha_devol` DATETIME NOT NULL,
+  `obser_devol` VARCHAR(250) NOT NULL,
+  `fk_prest` INT NOT NULL,
+  PRIMARY KEY (`id_devol`),
+  INDEX `fk_devol_prest1_idx` (`fk_prest` ASC),
+  CONSTRAINT `fk_devol_prest1`
+    FOREIGN KEY (`fk_prest`)
+    REFERENCES `mydb`.`prest` (`id_prest`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`inven`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`inven` (
+  `id_inven` INT NOT NULL AUTO_INCREMENT,
+  `fecha` DATE NOT NULL,
+  `fk_usuar_matri` INT NOT NULL,
+  PRIMARY KEY (`id_inven`),
+  INDEX `fk_inven_usuar1_idx` (`fk_usuar_matri` ASC),
+  CONSTRAINT `fk_inven_usuar1`
+    FOREIGN KEY (`fk_usuar_matri`)
+    REFERENCES `mydb`.`usuar` (`id_matri`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`unids`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`unids` (
+  `id_unids` INT NOT NULL AUTO_INCREMENT,
+  `nombr` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`id_unids`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`categ`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`categ` (
+  `id_categ` INT NOT NULL AUTO_INCREMENT,
+  `nombr` VARCHAR(10) NOT NULL,
+  PRIMARY KEY (`id_categ`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`mobil`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`mobil` (
+  `id_mobil` INT NOT NULL AUTO_INCREMENT,
+  `tipo` VARCHAR(10) NOT NULL,
+  `mater` VARCHAR(20) NOT NULL,
+  `nombr` VARCHAR(45) NOT NULL,
+  `canti` INT NOT NULL,
+  PRIMARY KEY (`id_mobil`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`mater`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`mater` (
+  `id_mater` INT NOT NULL AUTO_INCREMENT,
+  `nombr` VARCHAR(45) NOT NULL,
+  `capac` INT NOT NULL,
+  `canti` INT NOT NULL,
+  `marca` VARCHAR(25) NOT NULL,
+  `fk_unids` INT NOT NULL,
+  PRIMARY KEY (`id_mater`),
+  INDEX `fk_mater_unids1_idx` (`fk_unids` ASC),
+  CONSTRAINT `fk_mater_unids1`
+    FOREIGN KEY (`fk_unids`)
+    REFERENCES `mydb`.`unids` (`id_unids`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`equip`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`equip` (
+  `id_equip` INT NOT NULL AUTO_INCREMENT,
+  `nombr_equip` VARCHAR(50) NOT NULL,
+  `canti_equip` INT NOT NULL,
+  `descr` VARCHAR(200) NOT NULL,
+  `tipo` VARCHAR(30) NOT NULL,
+  PRIMARY KEY (`id_equip`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`detall_devol`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`detall_devol` (
+  `id_detall_devol` INT NOT NULL AUTO_INCREMENT,
+  `fk_devol` INT NOT NULL,
+  `fk_categ` INT NOT NULL,
+  `fk_objeto_id` INT NOT NULL,
+  `cant` INT NOT NULL,
+  PRIMARY KEY (`id_detall_devol`),
+  INDEX `fk_detall_devol_devol1_idx` (`fk_devol` ASC),
+  INDEX `fk_detall_devol_categ1_idx` (`fk_categ` ASC),
+  INDEX `fk_detall_devol_mobil1_idx` (`fk_objeto_id` ASC),
+  CONSTRAINT `fk_detall_devol_devol1`
+    FOREIGN KEY (`fk_devol`)
+    REFERENCES `mydb`.`devol` (`id_devol`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_detall_devol_categ1`
+    FOREIGN KEY (`fk_categ`)
+    REFERENCES `mydb`.`categ` (`id_categ`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_detall_devol_mobil1`
+    FOREIGN KEY (`fk_objeto_id`)
+    REFERENCES `mydb`.`mobil` (`id_mobil`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_detall_devol_mater1`
+    FOREIGN KEY (`fk_objeto_id`)
+    REFERENCES `mydb`.`mater` (`id_mater`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_detall_devol_equip1`
+    FOREIGN KEY (`fk_objeto_id`)
+    REFERENCES `mydb`.`equip` (`id_equip`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`detall_prest`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`detall_prest` (
+  `id_detall_prest` INT NOT NULL AUTO_INCREMENT,
+  `fk_prest` INT NOT NULL,
+  `fk_categ` INT NOT NULL,
+  `fk_objeto_id` INT NOT NULL,
+  `cant` INT NOT NULL,
+  PRIMARY KEY (`id_detall_prest`),
+  INDEX `fk_detall_prest_prest1_idx` (`fk_prest` ASC),
+  INDEX `fk_detall_prest_categ1_idx` (`fk_categ` ASC),
+  CONSTRAINT `fk_detall_prest_prest1`
+    FOREIGN KEY (`fk_prest`)
+    REFERENCES `mydb`.`prest` (`id_prest`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_detall_prest_categ1`
+    FOREIGN KEY (`fk_categ`)
+    REFERENCES `mydb`.`categ` (`id_categ`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_detall_prest_mobil1`
+    FOREIGN KEY (`fk_objeto_id`)
+    REFERENCES `mydb`.`mobil` (`id_mobil`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_detall_prest_equip1`
+    FOREIGN KEY (`fk_objeto_id`)
+    REFERENCES `mydb`.`equip` (`id_equip`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_detall_prest_mater1`
+    FOREIGN KEY (`fk_objeto_id`)
+    REFERENCES `mydb`.`mater` (`id_mater`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`prest_consu`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`prest_consu` (
+  `id_prest_consu` INT NOT NULL AUTO_INCREMENT,
+  `fecha_entre` DATETIME NOT NULL,
+  `fk_matri` INT NOT NULL,
+  `matri_solic` INT NOT NULL,
+  PRIMARY KEY (`id_prest_consu`),
+  INDEX `fk_prest_consu_usuar1_idx` (`fk_matri` ASC),
+  CONSTRAINT `fk_prest_consu_usuar1`
+    FOREIGN KEY (`fk_matri`)
+    REFERENCES `mydb`.`usuar` (`id_matri`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`react`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`react` (
+  `id_react` INT NOT NULL AUTO_INCREMENT,
+  `nombr` VARCHAR(100) NOT NULL,
+  `formu` VARCHAR(100) NULL,
+  `pelig_salud` VARCHAR(1) NULL,
+  `pelig_infla` VARCHAR(1) NULL,
+  `pelig_ines` VARCHAR(1) NULL,
+  `pelig_esp` VARCHAR(10) NULL,
+  `fk_unids` INT NOT NULL,
+  `cant` INT NOT NULL,
+  PRIMARY KEY (`id_react`),
+  INDEX `fk_react_unids1_idx` (`fk_unids` ASC),
+  CONSTRAINT `fk_react_unids1`
+    FOREIGN KEY (`fk_unids`)
+    REFERENCES `mydb`.`unids` (`id_unids`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`detall_prest_consu`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`detall_prest_consu` (
+  `id_detall_prest_consu` INT NOT NULL AUTO_INCREMENT,
+  `fk_prest_consu` INT NOT NULL,
+  `fk_react` INT NOT NULL,
+  PRIMARY KEY (`id_detall_prest_consu`),
+  INDEX `fk_detall_prest_consu_prest_consu1_idx` (`fk_prest_consu` ASC),
+  INDEX `fk_detall_prest_consu_react1_idx` (`fk_react` ASC),
+  UNIQUE INDEX `fk_prest_consu_UNIQUE` (`fk_prest_consu` ASC),
+  CONSTRAINT `fk_detall_prest_consu_prest_consu1`
+    FOREIGN KEY (`fk_prest_consu`)
+    REFERENCES `mydb`.`prest_consu` (`id_prest_consu`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_detall_prest_consu_react1`
+    FOREIGN KEY (`fk_react`)
+    REFERENCES `mydb`.`react` (`id_react`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`desgl_inven`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`desgl_inven` (
+  `id_desgl_inven` INT NOT NULL AUTO_INCREMENT,
+  `canti_siste` INT NOT NULL,
+  `canti_exist` INT NOT NULL,
+  `fk_categ` INT NOT NULL,
+  `fk_objeto_id` INT NOT NULL,
+  `fk_inven` INT NOT NULL,
+  PRIMARY KEY (`id_desgl_inven`),
+  INDEX `fk_desgl_inven_categ1_idx` (`fk_categ` ASC),
+  INDEX `fk_desgl_inven_equip1_idx` (`fk_objeto_id` ASC),
+  INDEX `fk_desgl_inven_inven1_idx` (`fk_inven` ASC),
+  CONSTRAINT `fk_desgl_inven_categ1`
+    FOREIGN KEY (`fk_categ`)
+    REFERENCES `mydb`.`categ` (`id_categ`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_desgl_inven_equip1`
+    FOREIGN KEY (`fk_objeto_id`)
+    REFERENCES `mydb`.`equip` (`id_equip`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_desgl_inven_mobil1`
+    FOREIGN KEY (`fk_objeto_id`)
+    REFERENCES `mydb`.`mobil` (`id_mobil`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_desgl_inven_mater1`
+    FOREIGN KEY (`fk_objeto_id`)
+    REFERENCES `mydb`.`mater` (`id_mater`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_desgl_inven_react1`
+    FOREIGN KEY (`fk_objeto_id`)
+    REFERENCES `mydb`.`react` (`id_react`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_desgl_inven_inven1`
+    FOREIGN KEY (`fk_inven`)
+    REFERENCES `mydb`.`inven` (`id_inven`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`incid`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`incid` (
+  `id_incid` INT NOT NULL AUTO_INCREMENT,
+  `fecha_incid` DATETIME NOT NULL,
+  `descr` VARCHAR(100) NOT NULL,
+  `fk_matri` INT NOT NULL,
+  PRIMARY KEY (`id_incid`),
+  INDEX `fk_incid_usuar1_idx` (`fk_matri` ASC),
+  CONSTRAINT `fk_incid_usuar1`
+    FOREIGN KEY (`fk_matri`)
+    REFERENCES `mydb`.`usuar` (`id_matri`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`detall_compr`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`detall_compr` (
+  `id_detall_compr` INT NOT NULL AUTO_INCREMENT,
+  `cant` DECIMAL(4,2) NOT NULL,
+  `fk_compr` INT NOT NULL,
+  `fk_categ` INT NOT NULL,
+  `fk_objeto_id` INT NOT NULL,
+  PRIMARY KEY (`id_detall_compr`),
+  INDEX `fk_detall_compr_compr1_idx` (`fk_compr` ASC),
+  INDEX `fk_detall_compr_categ1_idx` (`fk_categ` ASC),
+  INDEX `fk_detall_compr_react1_idx` (`fk_objeto_id` ASC),
+  CONSTRAINT `fk_detall_compr_compr1`
+    FOREIGN KEY (`fk_compr`)
+    REFERENCES `mydb`.`compr` (`id_compr`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_detall_compr_categ1`
+    FOREIGN KEY (`fk_categ`)
+    REFERENCES `mydb`.`categ` (`id_categ`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_detall_compr_react1`
+    FOREIGN KEY (`fk_objeto_id`)
+    REFERENCES `mydb`.`react` (`id_react`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_detall_compr_mater1`
+    FOREIGN KEY (`fk_objeto_id`)
+    REFERENCES `mydb`.`mater` (`id_mater`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_detall_compr_mobil1`
+    FOREIGN KEY (`fk_objeto_id`)
+    REFERENCES `mydb`.`mobil` (`id_mobil`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_detall_compr_equip1`
+    FOREIGN KEY (`fk_objeto_id`)
+    REFERENCES `mydb`.`equip` (`id_equip`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
