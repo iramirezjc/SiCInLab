@@ -39,20 +39,23 @@ class DevolucionesController extends Controller {
         $objetos = [];
 
         if (empty($prestamos)) {
+            header('Content-Type: application/json');
             echo json_encode([
                 'mensaje' => 'No se encontraron préstamos para esta matrícula.'
             ]);
             exit;
         }
         foreach ($prestamos as $prestamo) {
+            $detalle['cant_devue'] = 0;
             $prestado = $this->detallePrestamo->consultaDetalleFk($prestamo['id_prest']);
-            
+
             foreach ($prestado as $detalle) {
-                $detalle['fk_obj'] = $detalle['fk_objeto_id'];
-                $detalle['fk_devol'] = $detalle['fk_prest'];
-                $detalle['cantDevol'] = $detalle['cant'];
-                $devuelto = $this->detalleDevolucion->consultaCantidadDevuelta($detalle);
-                $detalle['cantidad_devuelta'] = $devuelto['cantidad_devuelta'] ?? 0;
+                $id_devol = $this->devolucion->compruebaDevolucion($detalle['fk_prest']);
+                
+                if ($id_devol && isset($id_devol['id_devol'])) {
+                    $devuelto = $this->detalleDevolucion->consultaCantidadDevuelta($id_devol['id_devol'], $detalle);
+                    $detalle['cant_devue'] = $devuelto['devuelto'] ?? 0;
+                }
                 $detalles[] = $detalle;
                 
                 switch ($detalle['fk_categ']) {
@@ -69,54 +72,65 @@ class DevolucionesController extends Controller {
             }
 
         }
+        if (empty($detalles)) {
+            header('Content-Type: application/json');
+            echo json_encode([
+                'mensaje' => 'No se encontraron préstamos pendientes de devolución para esta matrícula.'
+            ]);
+            exit;
+        }
         header('Content-Type: application/json');
         echo json_encode([
             'objetos' => $objetos,
             'detalles' => $detalles
         ]);
+        exit;
     }
     public function registrarDevolucion() {
         $fk_prest = $_POST['fk_prest'];
         $categorias = $_POST['categorias'];
         $objetos = $_POST['objetos'];
-        $cantDevol = $_POST['cantDevol'];//cantidad a devolver
+        $cantADevol = $_POST['cantDevol'];//cantidad a devolver
         $cantPrest = $_POST['cantPrest'];//cantidad prestada
         $fechas = $_POST['fechaDevol'];
 
-        for ($i = 0; $i < count($fk_prest); $i++) {
+        for ($i = 0; $i < count($objetos); $i++) {
             $datos = [
-                'fk_devol' => 0,
                 'fk_prest' => $fk_prest[$i],
                 'fk_categ' => $categorias[$i],
-                'fk_obj' => $objetos[$i],
-                'cantDevol' => $cantDevol[$i], //cantidad a devolver
+                'fk_objeto_id' => $objetos[$i],
+                'cantADevol' => $cantADevol[$i], //cantidad a devolver
                 'cantPrest' => $cantPrest[$i], //cantidad prestada
                 'observacion' => $_POST['observacion'],
                 'fecha' => $fechas[$i],
+                'fk_devol' => 0
             ];
-            $id_devol = $this->devolucion->compruebaDevolucion($fk_prest[$i]);
+            $id_devol = $this->devolucion->compruebaDevolucion($datos['fk_prest']);
 
-            if(isset($id_devol)) {
-                $datos['fk_devol'] = $id_devol['id_devol'];
-                $cant_devol = $this->detalleDevolucion->consultaCantidadDevuelta($datos);
-                $suma = (int)$cant_devol['cantidad_devuelta'] + $datos['cantDevol'];
+            if($id_devol && isset($id_devol['id_devol'])) {
+                $cant_devol = $this->detalleDevolucion->consultaCantidadDevuelta($id_devol['id_devol'], $datos);
+                $cantDevuelta = (int)($cant_devol['devuelto'] ?? 0);
+                $suma = $cantDevuelta + $datos['cantADevol'];
 
                 if ($suma > $datos['cantPrest']) {
                     http_response_code(400);
+                    header('Content-Type: application/json');
                     echo json_encode([
                         'error' => 'La cantidad a devolver es mayor a la prestada.'
                     ]);
                     exit;
                 }
+                $datos['fk_devol'] = $id_devol['id_devol'];
                 $this->detalleDevolucion->insertar($datos);
                 $this->registrarDevolucionObjetos($datos);
-
-                if ($suma == $datos['cantPrest']) {
+                
+                if ($suma == (int)($datos['cantPrest'])) {
                     $this->detallePrestamo->restaCantidadPrestada($datos, $suma);
                 }
             } else {
-                if ($datos['cantDevol'] > $datos['cantPrest']) {
+                if ($datos['cantADevol'] > $datos['cantPrest']) {
                     http_response_code(400);
+                    header('Content-Type: application/json');
                     echo json_encode([
                         'error' => 'La cantidad a devolver es mayor a la prestada.'
                     ]);
@@ -124,12 +138,13 @@ class DevolucionesController extends Controller {
                 }
                 $this->devolucion->insertar($datos);//insertar una nueva devolucion
                 $id_devol = $this->devolucion->ultimaDevolucion();
-                $datos['fk_devol'] = $id_devol['id_devol'];
+                $datos['fk_devol'] = (int)($id_devol['id_devol']);
                 $this->detalleDevolucion->insertar($datos);
                 $this->registrarDevolucionObjetos($datos);
 
-                if ($datos['cantDevol'] == $datos['cantPrest']) {
-                    $this->detallePrestamo->restaCantidadPrestada($datos, $datos['cantDevol']);
+                if ((int)($datos['cantADevol']) == (int)($datos['cantPrest'])) {
+                    $total = (int)($datos['cantADevol']);
+                    $this->detallePrestamo->restaCantidadPrestada($datos, $total);
                 }
             }
         }
@@ -137,18 +152,19 @@ class DevolucionesController extends Controller {
         echo json_encode([
             'success' => true, 
             'mensaje' => 'Devolución registrada con éxito.'
-        ]);       
+        ]); 
+        exit;    
     }
     public function registrarDevolucionObjetos($datos) {
         switch ($datos['fk_categ']) {
             case 1: 
-                $this->equipo->sumaCantidadId($datos['cantDevol'], $datos['fk_obj']);
+                $this->equipo->sumaCantidadId($datos['cantADevol'], $datos['fk_objeto_id']);
                 break;
             case 2: 
-                $this->material->sumaCantidadId($datos['cantDevol'], $datos['fk_obj']);
+                $this->material->sumaCantidadId($datos['cantADevol'], $datos['fk_objeto_id']);
                 break;
             case 3: 
-                $this->mobiliario->sumaCantidadId($datos['cantDevol'], $datos['fk_obj']);
+                $this->mobiliario->sumaCantidadId($datos['cantADevol'], $datos['fk_objeto_id']);
                 break;
         }
     }

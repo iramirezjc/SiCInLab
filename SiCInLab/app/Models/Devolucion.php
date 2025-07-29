@@ -25,7 +25,7 @@ class Devolucion extends Model {
     }
     public function ultimaDevolucion() {
         $sql = "SELECT MAX(id_devol) AS id_devol FROM devol";
-        $result = $this->db->quiery($sql);
+        $result = $this->db->query($sql);
         
         return $result->fetch_assoc();
     }

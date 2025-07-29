@@ -62,7 +62,6 @@ ob_start();
         </div>
     </div>
 </div>
-<script src="<?= BASE_JS .'usuarios/registroUsuario.js'?>"></script>
 <?php
 $contenido = ob_get_clean();  // Guarda el contenido y limpia el buffer
 $titulo = 'registro usuarios';          // Puedes personalizar el título desde aquí

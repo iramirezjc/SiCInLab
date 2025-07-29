@@ -15,7 +15,7 @@ $(document).ready(function () {
                 number: 'Debe ser una matricula',
                 minlength: 'Ingrese una matricula de 4 dígitos'
             }
-        },// Coloca el error después del contenedor de la input-group
+        },// Coloca el error después del contenedor del input-group
         errorPlacement: function (error, element) {
             error.appendTo(element.closest('.input-group').parent());
         }
@@ -56,8 +56,12 @@ $(document).ready(function () {
                             break;
                     }
                     if (objeto) {
-                        detalle.nombr_obj = objeto.nombr_equip || objeto.mat_nombr || objeto.nombr || 'Sin nombre';
-                        detalle.id_obj = objeto.id_equip || objeto.id_mater || objeto.id_mobil || '0';
+                        detalle.nombr_obj = objeto.nombr_equip || 
+                                            objeto.mat_nombr || 
+                                            objeto.nombr || '--';
+                        detalle.id_obj = objeto.id_equip || 
+                                         objeto.id_mater || 
+                                         objeto.id_mobil || '0';
                         cont++;
                         detallePrestamos += agregaDetalle(detalle, cont);
                     }
@@ -88,8 +92,8 @@ $(document).ready(function () {
     });
 
     $.validator.addMethod("maxPrestado", function(value, element) {
-        const $fila = $(element).closest('tr');
-        const prestado = parseInt($fila.find('input[name="prestado[]"]').val(), 10);
+        const fila = $(element).closest('tr');
+        const prestado = parseInt(fila.find('input[name="prestado[]"]').val(), 10);
         const devolucion = parseInt(value, 10);
 
         if (isNaN(devolucion)) { return false; }
@@ -98,9 +102,9 @@ $(document).ready(function () {
     }, "Cantidad mayor a la prestada");
 
     $.validator.addMethod("totalValido", function(value, element) {
-        const $fila = $(element).closest('tr');
-        const devuelto = parseInt($fila.find('input[name="devuelto[]"]').val(), 10);
-        const prestado = parseInt($fila.find('input[name="prestado[]"]').val(), 10);
+        const fila = $(element).closest('tr');
+        const devuelto = parseInt(fila.find('input[name="devuelto[]"]').val(), 10);
+        const prestado = parseInt(fila.find('input[name="prestado[]"]').val(), 10);
         let devolucion = parseInt(value, 10) + devuelto;
 
         if (isNaN(devolucion)) { return false; }
@@ -110,12 +114,12 @@ $(document).ready(function () {
     
     //validar cada input dentro de la tabla dimanicamente
     $(document).on('change', 'input[name="devolver[]"]', function () {
-        const $fila = $(this).closest('tr');
+        const fila = $(this).closest('tr');
 
         if ($(this).is(":checked")) {
             let valid = true; // Fuerza la validación de los campos en esa fila
 
-            $fila.find('input[name="devolucion[]"]').each(function () {
+            fila.find('input[name="devolucion[]"]').each(function () {
                 if (!$(this).valid()) { valid = false; }
             });
             if (!valid) { $(this).prop('checked', false); }
@@ -127,9 +131,9 @@ $(document).ready(function () {
         let valid = true;
 
         $('#filas input[name="devolver[]"]:checked').each(function () {
-            const $fila = $(this).closest('tr');
+            const fila = $(this).closest('tr');
              
-            $fila.find('input[name="devolucion[]"]').each(function () {
+            fila.find('input[name="devolucion[]"]').each(function () {
                 if (!$(this).valid()) { valid = false; }
             });
         });
@@ -184,6 +188,7 @@ $(document).ready(function () {
             error: function (xhr) {
                 $('#observacion').modal('hide');
                 // xhr.responseText contiene el JSON enviado desde PHP
+                console.log(xhr.responseText);
                 let respuesta;
                 try {
                     respuesta = JSON.parse(xhr.responseText);
@@ -213,8 +218,8 @@ function agregaDetalle(detalle, numeroFila) {
                 "<input type=\"hidden\" id=\"prestado" + numeroFila + "\" name=\"prestado[]\" value=\""+ detalle.cant +"\"/>" +
             "</td>"+
             "<td>" + 
-                "<span>" + (detalle.cantidad_devuelta || 0) + "</span>" +
-                "<input type=\"hidden\" id=\"devuelto" + numeroFila + "\" name=\"devuelto[]\" value=\""+ (detalle.cantidad_devuelta || 0) +"\"/>" +
+                "<span>" + (detalle.cant_devue || 0) + "</span>" +
+                "<input type=\"hidden\" id=\"devuelto" + numeroFila + "\" name=\"devuelto[]\" value=\""+ (detalle.cant_devue || 0) +"\"/>" +
             "</td>" +
             "<td class=\"text-center\" style=\"width: 1%; white-space: nowrap;\">" +
                 "<input type=\"number\" id=\"devolucion" + numeroFila + "\" name=\"devolucion[]\" value=\"0\" class=\"form-control\" style=\"text-align: right; width: 12rem;\"/>" +

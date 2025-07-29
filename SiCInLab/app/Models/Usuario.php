@@ -51,6 +51,18 @@ class Usuario extends Model {
         
         return $this->db->query($sql);
     }
+    public function actualizarPerfil($datos, $matricula) {
+        $usuario = $this->sanitizar($datos);
+        $sql = "UPDATE usuar 
+                SET nombr = '{$usuario['nombr']}',
+                    apell = '{$usuario['apell']}',
+                    fecha_nacim = '{$usuario['fecha_nacim']}', 
+                    num_tel = '{$usuario['num_tel']}',  
+                    user_name = '{$usuario['user_name']}' 
+                WHERE id_matri = $matricula";
+        
+        return $this->db->query($sql);
+    }
     public function eliminar($matricula) {
         $sql = "DELETE FROM usuar WHERE id_matri = $matricula";
 

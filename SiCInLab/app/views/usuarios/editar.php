@@ -53,7 +53,8 @@ ob_start();
                 </div>
                 <div class="mb-2">
                     <label for="clave">Contraseña</label>
-                    <input type="password" id="clave" name="clave" class="form-control" placeholder="Escribe una contraseña" autocomplete="off"/> 
+                    <input type="text" id="clave" name="clave" class="form-control" placeholder="Escribe una contraseña" autocomplete="off"
+                    value="<?= $usuario['id_matri']; ?>"/> 
                 </div>
                 <div class="mb-2 text-end">
                     <a href="<?= Enlace::url('usuarios/index'); ?>" class="btn btn-secondary" style="display: inline-block;">Volver</a>

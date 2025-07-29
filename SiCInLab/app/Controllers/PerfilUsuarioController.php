@@ -65,7 +65,7 @@ class PerfilUsuarioController extends Controller {
             'fechUsuario'=> $_POST['fechaNacimiento'],
             'usuarioNom' => $_POST['userName']
         ];
-        $this->usuarios->actualizar($datos, $matricula);
+        $this->usuarios->actualizarPerfil($datos, $matricula);
 
         return $this->redirect('perfil-usuario/mi-perfil');
     }

@@ -95,7 +95,7 @@ class PrestamosController extends Controller {
         for ($i = 0; $i < count($objetos); $i++) {
             $datos = [
                 'fk_categ' => $categorias[$i],
-                'fk_obj' => $objetos[$i],
+                'fk_objeto_id' => $objetos[$i],
                 'cant' => $cantidades[$i],
                 'fk_prest' => $idPrestamo,
             ];
@@ -103,13 +103,13 @@ class PrestamosController extends Controller {
 
             switch ($datos['fk_categ']) {
                 case 1:
-                    $this->equipos->restaCantidadId($datos['fk_obj'], $datos['cant']);
+                    $this->equipos->restaCantidadId($datos['fk_objeto_id'], $datos['cant']);
                     break;
                 case 2:
-                    $this->materiales->restaCantidadId($datos['fk_obj'], $datos['cant']);
+                    $this->materiales->restaCantidadId($datos['fk_objeto_id'], $datos['cant']);
                     break;
                 case 1:
-                    $this->mobiliarios->restaCantidadId($datos['fk_obj'], $datos['cant']);
+                    $this->mobiliarios->restaCantidadId($datos['fk_objeto_id'], $datos['cant']);
                     break;
             }
         }
