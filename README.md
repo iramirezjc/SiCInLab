@@ -25,7 +25,6 @@ Sistema de Control de Inventarios de Laboratorio.
 ## Base de Datos
 
 - Crea una nueva base de datos en MySQL usando Workbench o similar
-- Puedes restaurar la Base de Datos desde:
 - Puedes restaurar la base de datos desde:
    - `/BD/bddesarrollo/` para desarrollo con datos de prueba.
    - `/BD/bdlimpia/` para iniciar con estructura limpia (sin datos).
